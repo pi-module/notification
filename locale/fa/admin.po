@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi\n"
-"POT-Creation-Date: 2015-04-01 15:11+0330\n"
+"POT-Creation-Date: 2015-04-07 14:27+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Pi\n"
@@ -22,42 +22,50 @@ msgid "Admin"
 msgstr "مدیریت"
 
 #: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:20
+msgid "Cron"
+msgstr "کرون جاب"
+
+#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:24
 msgid "Sms"
 msgstr "پیامک"
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:28
+#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:32
 msgid "Admin mobile number"
 msgstr "شماره تلفن های مدیران"
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:34
+#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:39
+msgid "Cron password"
+msgstr "واژه رمز کرون جاب"
+
+#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:46
 msgid "Select country for use local sms system"
 msgstr "انتخاب کشور برای استفاده از سیستم ارسال پیامک محلی"
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:40
+#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:52
 msgid "Not set"
 msgstr "تنظیم نشده"
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:41
+#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:53
 msgid "Iran"
 msgstr "ایران"
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:42
+#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:54
 msgid "France"
 msgstr "فرانسه"
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:52
+#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:64
 msgid "Iran sms panel username"
 msgstr "نام کاربری پنل پیامک ایران "
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:58
+#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:70
 msgid "Iran sms panel password"
 msgstr "واژه رمز پنل پیامک ایران "
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:64
+#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:76
 msgid "Iran sms panel number"
 msgstr "شماره خط پنل پیامک ایران "
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:70
+#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:82
 msgid "Iran sms panel soap url"
 msgstr "آدرس ارسال soap پنل پیامک ایران "
 

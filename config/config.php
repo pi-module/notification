@@ -17,6 +17,10 @@ return array(
             'name'   => 'admin'
         ),
         array(
+            'title'  => _a('Cron'),
+            'name'   => 'cron'
+        ),
+        array(
             'title'  => _a('Sms'),
             'name'   => 'sms'
         ),
@@ -28,6 +32,14 @@ return array(
             'title'        => _a('Admin mobile number'),
             'edit'         => 'text',
             'filter'       => 'string',
+        ),
+        // Cron
+        'cron_password' => array(
+            'category'     => 'cron',
+            'title'        => _a('Cron password'),
+            'edit'         => 'text',
+            'filter'       => 'string',
+            'value'        => md5(rand()),
         ),
         // Sms
         'sms_send_country' => array(

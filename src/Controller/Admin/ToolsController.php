@@ -19,9 +19,19 @@ class ToolsController extends ActionController
 {
     public function indexAction()
     {
+        // Get info from url
+        $module = $this->params('module');
+        // Get config
+        $config = Pi::service('registry')->config->read($module);
+        // Set cron url
+        $cronUrl = Pi::url($this->url('default', array(
+        	'module'      => 'notification',
+        	'controller'  => 'cron',
+        	'action'      => 'index',
+        	'password'    => $config['cron_password'],
+        )));
         // Set template
         $this->view()->setTemplate('tools_index');
-        // Test send sms
-        //Pi::api('sms', 'notification')->sendSms('Test 1', '');
+        $this->view()->assign('cronUrl', $cronUrl);
     }
 }

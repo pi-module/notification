@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi\n"
-"POT-Creation-Date: 2015-04-01 13:30+0330\n"
+"POT-Creation-Date: 2015-04-07 14:28+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Pi\n"
@@ -16,3 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-2.5.0/usr/module/"
 "notification\n"
+
+#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/template/admin/tools_index.phtml:3
+msgid "Cron URL"
+msgstr "لینک کرون جاب"
