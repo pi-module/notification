@@ -3,4 +3,8 @@
         <label for="cronUrl"><?php _e('Cron URL'); ?></label>
         <input type="email" class="form-control" id="cronUrl" value="<?php echo $this->escape($cronUrl); ?>">
     </div>
+    <div class="form-group">
+        <label for="cronUrl"><?php _e('Cron Command'); ?></label>
+        <input type="email" class="form-control" id="cronCommand" value="GET <?php echo $this->escape($cronUrl); ?>">
+    </div>
 </div>
