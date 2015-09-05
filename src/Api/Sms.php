@@ -15,6 +15,7 @@ namespace Module\Notification\Api;
 use Pi;
 use Pi\Application\Api\AbstractApi;
 use Zend\Soap\Client as ZendSoapClient;
+use Zend\Json\Json;
 
 /*
  * Pi::api('sms', 'notification')->send($content, $number);
@@ -69,14 +70,21 @@ class Sms extends AbstractApi
         $parameters['recId'] = array(0);
         $parameters['status'] = 0x0;
         // Send
-        $client = new ZendSoapClient($config['sms_iran_soap_url']);
-        $client->SendSms($parameters)->SendSmsResult;
+        try {
+            $client = new ZendSoapClient($config['sms_iran_soap_url']);
+            $client->SendSms($parameters)->SendSmsResult;
+            $delivery = 1;
+        } catch (SoapFault $fault) {
+            $content = json::encode($fault);
+            $delivery = 0;
+        }
         // Save sms
     	$sms = Pi::model('sms', $this->getModule())->createRow();
     	$sms->number = $number;
     	$sms->content = $content;
     	$sms->uid = Pi::user()->getId();
     	$sms->time_create = time();
+        $sms->delivery = $delivery;
     	$sms->save();
 	}
 
