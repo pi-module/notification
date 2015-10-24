@@ -15,7 +15,7 @@ return array(
     'meta'          => array(
         'title'         => _a('Notification'),
         'description'   => _a('General Notification system'),
-        'version'       => '0.0.3',
+        'version'       => '0.0.4',
         'license'       => 'New BSD',
         'logo'          => 'image/logo.png',
         'readme'        => 'docs/readme.txt',

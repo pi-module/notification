@@ -11,6 +11,9 @@
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
 return array(
+    // Hide from front menu
+    'front' => false,
+    // Admin side
     'admin' => array(
         'tools' => array(
             'label'         => _a('Tools'),
