@@ -36,6 +36,10 @@ class Mail extends AbstractApi
         $message->addTo($to);
         //$message->setEncoding("UTF-8");
         // Send mail
-        Pi::service('mail')->send($message);
+        try {
+            Pi::service('mail')->send($message);
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }
