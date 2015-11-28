@@ -21,7 +21,7 @@ use Pi\Application\Api\AbstractApi;
 
 class Mail extends AbstractApi
 {
-    public function send($to, $template, $information, $module)
+    public function send($to, $template, $information, $module, $uid = 0)
     {
         // Set template
         $data = Pi::service('mail')->template(
@@ -31,10 +31,17 @@ class Mail extends AbstractApi
             ),
             $information
         );
+
         // Set message
         $message = Pi::service('mail')->message($data['subject'], $data['body'], $data['format']);
         $message->addTo($to);
         //$message->setEncoding("UTF-8");
+
+        // Set as notification
+        if (Pi::service('module')->isActive('message') && $uid > 0) {
+            Pi::api('api', 'message')->notify($uid, $data['body'], $data['subject']);
+        }
+
         // Send mail
         try {
             Pi::service('mail')->send($message);
