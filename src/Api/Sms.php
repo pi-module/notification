@@ -19,7 +19,7 @@ use Zend\Json\Json;
 
 /*
  * Pi::api('sms', 'notification')->send($content, $number);
- * Pi::api('sms', 'notification')->sendToAdmin($content);
+ * Pi::api('sms', 'notification')->sendToAdmin($content, $number);
  */
 
 class Sms extends AbstractApi
@@ -40,13 +40,17 @@ class Sms extends AbstractApi
         }
 	}
 
-    public function sendToAdmin($content)
+    public function sendToAdmin($content, $number = '')
     {
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
         // Send
-        $numbers = explode(',', $config['admin_number']);
-        foreach ($numbers as $number) {
+        if (empty($number)) {
+            $numbers = explode(',', $config['admin_number']);
+            foreach ($numbers as $number) {
+                $this->send($content, $number);
+            }
+        } else {
             $this->send($content, $number);
         }
     }
