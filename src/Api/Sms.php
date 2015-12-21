@@ -42,10 +42,10 @@ class Sms extends AbstractApi
 
     public function sendToAdmin($content, $number = '')
     {
-        // Get config
-        $config = Pi::service('registry')->config->read($this->getModule());
-        // Send
         if (empty($number)) {
+            // Get config
+            $config = Pi::service('registry')->config->read($this->getModule());
+            // Send
             $numbers = explode(',', $config['admin_number']);
             foreach ($numbers as $number) {
                 $this->send($content, $number);

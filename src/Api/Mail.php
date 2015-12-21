@@ -16,7 +16,7 @@ use Pi;
 use Pi\Application\Api\AbstractApi;
 
 /*
- * Pi::api('mail', 'notification')->send($to, $template, $information, $module);
+ * Pi::api('mail', 'notification')->send($to, $template, $information, $module, $uid);
  */
 
 class Mail extends AbstractApi
