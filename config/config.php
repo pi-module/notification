@@ -34,6 +34,14 @@ return array(
             'filter'       => 'string',
         ),
         // Cron
+        'cron_active' => array(
+            'category'     => 'cron',
+            'title'        => _a('Active cron'),
+            'description'  => '',
+            'edit'         => 'checkbox',
+            'filter'       => 'number_int',
+            'value'        => 1
+        ),
         'cron_password' => array(
             'category'     => 'cron',
             'title'        => _a('Cron password'),

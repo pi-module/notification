@@ -20,6 +20,11 @@ class Sms extends Model
      * {@inheritDoc}
      */
     protected $columns = array(
-        'id', 'number', 'content', 'delivery', 'uid', 'time_create'
+        'id',
+        'number',
+        'content',
+        'delivery',
+        'uid',
+        'time_create'
     );
 }

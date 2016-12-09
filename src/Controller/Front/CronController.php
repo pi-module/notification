@@ -27,7 +27,7 @@ class CronController extends ActionController
         // Get config
         $config = Pi::service('registry')->config->read($module);
         // Get password
-        if ($password == $config['cron_password']) {
+        if ($config['cron_active'] && $password == $config['cron_password']) {
         	// Do cron
         	Pi::api('cron', 'notification')->doCron();
         	// return
