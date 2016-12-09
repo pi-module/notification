@@ -23,30 +23,12 @@ class Mail extends AbstractApi
 {
     public function send($to, $template, $information, $module, $uid = 0)
     {
-        // Set template
-        $data = Pi::service('mail')->template(
-            array(
-                'file'      => $template,
-                'module'    => $module,
-            ),
-            $information
+        Pi::service('notification')->sendNotification(
+            $to,
+            $template,
+            $information,
+            $module,
+            $uid
         );
-
-        // Set message
-        $message = Pi::service('mail')->message($data['subject'], $data['body'], $data['format']);
-        $message->addTo($to);
-        //$message->setEncoding("UTF-8");
-
-        // Set as notification
-        if (Pi::service('module')->isActive('message') && $uid > 0) {
-            Pi::api('api', 'message')->notify($uid, $data['body'], $data['subject']);
-        }
-
-        // Send mail
-        try {
-            Pi::service('mail')->send($message);
-        } catch (\Exception $e) {
-            return false;
-        }
     }
 }

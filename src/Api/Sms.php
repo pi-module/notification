@@ -18,27 +18,25 @@ use Zend\Soap\Client as ZendSoapClient;
 use Zend\Json\Json;
 
 /*
- * Pi::api('sms', 'notification')->send($content, $number);
+ * Pi::api('sms', 'notification')->sendToUser($content, $number);
  * Pi::api('sms', 'notification')->sendToAdmin($content, $number);
  */
 
 class Sms extends AbstractApi
 {
-	public function send($content, $number)
-	{
-        // Get config
-        $config = Pi::service('registry')->config->read($this->getModule());
-        // Select
-        switch ($config['sms_send_country']) {
-        	case 'iran':
-        		$this->sendSmsIran($content, $number);
-        		break;
-
-        	case 'france':
-        	    $this->sendSmsFrance($content, $number);
-        		break;
+    public function sendToUser($content, $number = '')
+    {
+        if (empty($number)) {
+            $uid = Pi::user()->getId();
+            $fields = array('mobile');
+            $user = Pi::user()->get($uid, $fields);
+            if (!isset($user['mobile']) && empty($user['mobile'])) {
+                return false;
+            }
+            $number = $user['mobile'];
         }
-	}
+        $this->send($content, $number);
+    }
 
     public function sendToAdmin($content, $number = '')
     {
@@ -52,6 +50,22 @@ class Sms extends AbstractApi
             }
         } else {
             $this->send($content, $number);
+        }
+    }
+
+    public function send($content, $number)
+    {
+        // Get config
+        $config = Pi::service('registry')->config->read($this->getModule());
+        // Select
+        switch ($config['sms_send_country']) {
+            case 'iran':
+                $this->sendSmsIran($content, $number);
+                break;
+
+            case 'france':
+                $this->sendSmsFrance($content, $number);
+                break;
         }
     }
 
@@ -93,5 +107,7 @@ class Sms extends AbstractApi
 	}
 
 	public function sendSmsFrance($content, $number)
-	{}
+	{
+	    return false;
+    }
 }
