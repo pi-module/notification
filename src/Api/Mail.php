@@ -23,7 +23,7 @@ class Mail extends AbstractApi
 {
     public function send($to, $template, $information, $module, $uid = 0)
     {
-        Pi::service('notification')->sendNotification(
+        Pi::service('notification')->send(
             $to,
             $template,
             $information,
