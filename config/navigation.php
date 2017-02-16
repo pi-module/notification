@@ -15,13 +15,31 @@ return array(
     'front' => false,
     // Admin side
     'admin' => array(
-        'tools' => array(
-            'label'         => _a('Tools'),
+        'dashboard' => array(
+            'label'         => _a('Dashboard'),
             'permission'    => array(
-                'resource'  => 'tools',
+                'resource'  => 'dashboard',
             ),
             'route'         => 'admin',
-            'controller'    => 'tools',
+            'controller'    => 'dashboard',
+            'action'        => 'index',
+        ),
+        'sms' => array(
+            'label'         => _a('Sms'),
+            'permission'    => array(
+                'resource'  => 'sms',
+            ),
+            'route'         => 'admin',
+            'controller'    => 'sms',
+            'action'        => 'index',
+        ),
+        'push' => array(
+            'label'         => _a('Push notification'),
+            'permission'    => array(
+                'resource'  => 'push',
+            ),
+            'route'         => 'admin',
+            'controller'    => 'push',
             'action'        => 'index',
         ),
     ),

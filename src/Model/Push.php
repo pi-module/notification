@@ -14,17 +14,18 @@ namespace Module\Notification\Model;
 
 use Pi\Application\Model\Model;
 
-class Sms extends Model
+class Push extends Model
 {
     /**
      * {@inheritDoc}
      */
     protected $columns = array(
         'id',
-        'number',
-        'content',
-        'delivery',
-        'uid',
         'time_create',
+        'to',
+        'title',
+        'body',
+        'sound',
+        'time_to_live',
     );
 }

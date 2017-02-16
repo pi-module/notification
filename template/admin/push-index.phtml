@@ -1,0 +1,90 @@
+<?php
+$this->css($this->assetModule('css/admin.css'));
+$this->backbone();
+?>
+<div id="js-notification" class="clearfix">
+    <?php if (isset($list) && !empty($list)) { ?>
+        <div class="clearfix text-right">
+            <button type="button" class="btn btn-primary send-push" data-push="<?php echo $this->escape($pushUrl); ?>"><?php _e('Push notification'); ?></button>
+        </div>
+        <h3><?php _e('List of push notification'); ?></h3>
+        <div class="message-list">
+            <?php foreach ($list as $push) { ?>
+                <div class="message-single clearfix">
+                    <ul class="list-inline small text-muted">
+                        <li><?php _e('Send on'); ?> : <?php echo $push['time_create_view']; ?></li>
+                        <li class="message-divider">|</li>
+                        <li><?php _e('ID'); ?> : <?php echo $push['id']; ?></li>
+                        <li class="message-divider">|</li>
+                        <li><?php _e('To'); ?> : <?php echo $push['to']; ?></li>
+                        <li class="message-divider">|</li>
+                        <li><?php _e('Time to live'); ?> : <?php echo $push['time_to_live']; ?></li>
+                        <li class="message-divider">|</li>
+                        <li><?php _e('Sound'); ?> : <?php echo $push['sound']; ?></li>
+                    </ul>
+                    <div class="message-title">
+                        <?php echo $push['title']; ?>
+                    </div>
+                    <div class="message-content">
+                        <?php echo $push['body']; ?>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        <div class="paginator">
+            <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator'); ?>
+        </div>
+    <?php } else { ?>
+        <div class="alert alert-danger">
+            <p><?php _e('Website still dont send any push notification to mobile apps, for setup push notification service and send push notification to users please check this tips'); ?></p>
+            <ol>
+                <li><?php echo sprintf(__('Push notification work by Firebase Cloud Messaging, for more information please check %s'), '<a href="https://firebase.google.com/docs/cloud-messaging/">https://firebase.google.com/docs/cloud-messaging</a>'); ?></li>
+                <li><?php _e('Make sure your website mobile apps support push notification service, if not please call your app developer'); ?></li>
+                <li><?php _e('Setup Firebase Cloud Messaging service on google console'); ?></li>
+                <li>
+                    <?php echo sprintf(__('Setup config file on : %s'), Pi::path('var/config/service.notification.php')); ?>
+                    <ul>
+                        <li><?php _e('Set server key on `fcm_server_key`'); ?></li>
+                        <li><?php _e('Set topic name or token on `fcm_token`'); ?></li>
+                    </ul>
+                </li>
+                <li><?php _e('After all of them you can send push notification'); ?></li>
+            </ol>
+        </div>
+        <div class="clearfix text-right">
+            <button type="button" class="btn btn-primary send-push" data-push="<?php echo $this->escape($pushUrl); ?>"><?php _e('Push notification'); ?></button>
+        </div>
+    <?php } ?>
+</div>
+<script>
+    (function ($) {
+        var page = {
+            el: $('#js-notification'),
+            modal: $('<div class="modal fade">').appendTo(document.body),
+            $: function (selector) {
+                return this.el.find(selector);
+            },
+            init: function () {
+                _.bindAll(this);
+                this.$('.send-push').click(this.pushAction);
+            },
+            pushAction: function (e) {
+                var p = $(e.target),
+                    self = this;
+                $.get($('.send-push').data('push')).done(function (res) {
+                    self.modal.html(res).modal('show');
+                    formModule.success = function (res) {
+                        var d = res.data;
+                        self.modal.html(res).modal('hide');
+                        if (res.status == 1) {
+                            alert('<?php _e('Push notification send successfully!'); ?>');
+                        } else {
+                            alert('<?php _e('Error to send push notification, please check your mobile app and setting on website and firebase'); ?>');
+                        }
+                    };
+                });
+            },
+        }
+        page.init();
+    })(jQuery)
+</script>

@@ -13,8 +13,20 @@
 return array(
     // Admin section
     'admin' => array(
-        'tools'       => array(
-            'title'         => _a('Tools'),
+        'dashboard'       => array(
+            'title'         => _a('Dashboard'),
+            'access'        => array(
+                //'admin',
+            ),
+        ),
+        'sms'       => array(
+            'title'         => _a('Sms'),
+            'access'        => array(
+                //'admin',
+            ),
+        ),
+        'push'       => array(
+            'title'         => _a('Push notification'),
             'access'        => array(
                 //'admin',
             ),

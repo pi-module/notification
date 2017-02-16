@@ -14,9 +14,19 @@ return array(
     // Admin section
     'admin' => array(
         array(
-            'title'         => _a('Tools'),
-            'controller'    => 'tools',
-            'permission'    => 'tools',
+            'title'         => _a('Dashboard'),
+            'controller'    => 'dashboard',
+            'permission'    => 'dashboard',
+        ),
+        array(
+            'title'         => _a('Sms'),
+            'controller'    => 'sms',
+            'permission'    => 'sms',
+        ),
+        array(
+            'title'         => _a('Push notification'),
+            'controller'    => 'push',
+            'permission'    => 'push',
         ),
     ),
 );

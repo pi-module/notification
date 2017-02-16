@@ -15,13 +15,10 @@ namespace Module\Notification\Controller\Admin;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 
-class IndexController extends ActionController
+class DashboardController extends ActionController
 {
     public function indexAction()
     {
-        return $this->redirect()->toRoute('', array(
-            'controller' => 'dashboard',
-            'action'     => 'index',
-        ));
+
     }
 }
