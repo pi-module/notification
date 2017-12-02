@@ -1,35 +1,35 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt New BSD License
  */
 
 /**
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
-return array(
+return [
     // Admin section
-    'admin' => array(
-        'dashboard'       => array(
-            'title'         => _a('Dashboard'),
-            'access'        => array(
+    'admin' => [
+        'dashboard' => [
+            'title'  => _a('Dashboard'),
+            'access' => [
                 //'admin',
-            ),
-        ),
-        'sms'       => array(
-            'title'         => _a('Sms'),
-            'access'        => array(
+            ],
+        ],
+        'sms'       => [
+            'title'  => _a('Sms'),
+            'access' => [
                 //'admin',
-            ),
-        ),
-        'push'       => array(
-            'title'         => _a('Push notification'),
-            'access'        => array(
+            ],
+        ],
+        'push'      => [
+            'title'  => _a('Push notification'),
+            'access' => [
                 //'admin',
-            ),
-        ),
-    ),
-);
+            ],
+        ],
+    ],
+];

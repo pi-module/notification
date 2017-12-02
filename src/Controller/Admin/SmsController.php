@@ -1,15 +1,16 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt New BSD License
  */
 
 /**
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Notification\Controller\Admin;
 
 use Pi;
@@ -22,12 +23,12 @@ class SmsController extends ActionController
     public function indexAction()
     {
         // Get page
-        $page = $this->params('page', 1);
-        $list = array();
+        $page  = $this->params('page', 1);
+        $list  = [];
         $limit = 50;
-        $users = array();
+        $users = [];
         // Set info
-        $order = array('time_create DESC', 'id DESC');
+        $order  = ['time_create DESC', 'id DESC'];
         $offset = (int)($page - 1) * $limit;
         // Get info
         $select = $this->getModel('sms')->select()->order($order)->offset($offset)->limit($limit);
@@ -39,35 +40,35 @@ class SmsController extends ActionController
             $list[$row->id]['content'] = Pi::service('markup')->compile(
                 $row->content,
                 'html',
-                array('nl2br' => false)
+                ['nl2br' => false]
             );
             // user to
             if (isset($users[$row->uid])) {
                 $list[$row->id]['user'] = $users[$row->uid];
             } else {
-                $user = Pi::user()->getUser($row->uid)->toArray();
-                $users[$row->uid] = $user;
+                $user                   = Pi::user()->getUser($row->uid)->toArray();
+                $users[$row->uid]       = $user;
                 $list[$row->id]['user'] = $user;
             }
             // Time send view
             $list[$row->id]['time_create_view'] = _date($row->time_create);
         }
         // Set paginator
-        $columns = array('count' => new Expression('count(*)'));
-        $select = $this->getModel('sms')->select()->columns($columns);
-        $count = $this->getModel('sms')->selectWith($select)->current()->count;
+        $columns   = ['count' => new Expression('count(*)')];
+        $select    = $this->getModel('sms')->select()->columns($columns);
+        $count     = $this->getModel('sms')->selectWith($select)->current()->count;
         $paginator = Paginator::factory(intval($count));
         $paginator->setItemCountPerPage($limit);
         $paginator->setCurrentPageNumber($page);
-        $paginator->setUrlOptions(array(
+        $paginator->setUrlOptions([
             'router' => $this->getEvent()->getRouter(),
-            'route' => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
-            'params' => array_filter(array(
-                'module' => $this->getModule(),
+            'route'  => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
+            'params' => array_filter([
+                'module'     => $this->getModule(),
                 'controller' => 'sms',
-                'action' => 'index',
-            )),
-        ));
+                'action'     => 'index',
+            ]),
+        ]);
         // Set view
         $this->view()->setTemplate('sms-index');
         $this->view()->assign('list', $list);

@@ -6,7 +6,8 @@
             <?php foreach ($list as $sms) { ?>
                 <div class="message-single clearfix">
                     <ul class="list-inline small text-muted">
-                        <li><?php _e('To'); ?> : <?php echo $sms['user']['avatar-small']; ?> <?php echo $sms['user']['name']; ?></li>
+                        <li><?php _e('To'); ?>
+                            : <?php echo $sms['user']['avatar-small']; ?> <?php echo $sms['user']['name']; ?></li>
                         <li class="message-divider">|</li>
                         <li><?php _e('Number'); ?> : <?php echo $sms['number']; ?></li>
                         <li class="message-divider">|</li>

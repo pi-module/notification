@@ -1,10 +1,10 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt New BSD License
  */
 
 /**
@@ -18,27 +18,61 @@ use Zend\InputFilter\InputFilter;
 
 class PushFilter extends InputFilter
 {
-    public function __construct()
+    public function __construct($option = [])
     {
-        // title
-        $this->add(array(
-            'name' => 'title',
+        switch ($option['type']) {
+            case 'token':
+                // device_token
+                $this->add([
+                    'name'     => 'device_token',
+                    'required' => true,
+                    'filters'  => [
+                        [
+                            'name' => 'StringTrim',
+                        ],
+                    ],
+                ]);
+                break;
+
+            case 'user':
+                // user
+                $this->add([
+                    'name'     => 'user',
+                    'required' => true,
+                    'filters'  => [
+                        [
+                            'name' => 'StringTrim',
+                        ],
+                    ],
+                ]);
+                break;
+
+            case 'topic':
+                // topic
+                $this->add([
+                    'name'     => 'topic',
+                    'required' => true,
+                    'filters'  => [
+                        [
+                            'name' => 'StringTrim',
+                        ],
+                    ],
+                ]);
+                break;
+
+            case 'all':
+
+                break;
+        }
+        // message
+        $this->add([
+            'name'     => 'message',
             'required' => true,
-            'filters' => array(
-                array(
+            'filters'  => [
+                [
                     'name' => 'StringTrim',
-                ),
-            ),
-        ));
-        // body
-        $this->add(array(
-            'name' => 'body',
-            'required' => true,
-            'filters' => array(
-                array(
-                    'name' => 'StringTrim',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
     }
 }

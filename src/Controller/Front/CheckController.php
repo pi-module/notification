@@ -44,14 +44,14 @@ class CheckController extends ActionController
             // Check message module for example
             if (Pi::service('module')->isActive('message')) {
                 // Get new message
-                $where = [
+                $where  = [
                     'uid'            => $uid,
                     'is_deleted'     => 0,
                     'is_read'        => 0,
                     'time_send >= ?' => $timeStart,
                 ];
                 $select = Pi::model('notification', 'message')->select()->where($where)->limit(1);
-                $row = Pi::model('notification', 'message')->selectWith($select)->current();
+                $row    = Pi::model('notification', 'message')->selectWith($select)->current();
                 if ($row) {
                     $result = [
                         'status' => 1,
