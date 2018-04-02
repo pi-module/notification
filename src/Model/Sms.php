@@ -25,6 +25,7 @@ class Sms extends Model
         'number',
         'content',
         'delivery',
+        'send',
         'uid',
         'time_create',
     ];

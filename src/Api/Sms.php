@@ -54,29 +54,45 @@ class Sms extends AbstractApi
         }
     }
 
-    public function send($content, $number)
+    protected function send($content, $number)
     {
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
-        // Select
-        switch ($config['sms_send_country']) {
-            case 'iran':
-                $this->sendSmsIran($content, $number);
-                break;
 
-            case 'france':
-                $this->sendSmsFrance($content, $number);
-                break;
+        // Check send time
+        if ($config['sms_send_time'] == 'live') {
+            // Select
+            switch ($config['sms_send_country']) {
+                case 'iran':
+                    $result = $this->sendSmsIran($content, $number);
+                    break;
+
+                case 'france':
+                    $result = $this->sendSmsFrance($content, $number);
+                    break;
+            }
         }
+
+        // Save sms
+        $sms              = Pi::model('sms', $this->getModule())->createRow();
+        $sms->number      = $number;
+        $sms->content     = $content;
+        $sms->uid         = Pi::user()->getId();
+        $sms->time_create = time();
+        $sms->delivery    = isset($result['delivery']) ? $result['delivery'] : 0;
+        $sms->send        = isset($result['send']) ? $result['send'] : 0;
+        $sms->save();
     }
 
-    public function sendSmsIran($content, $number)
+    protected function sendSmsIran($content, $number)
     {
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
+
         // Set mobile
         $to   = [];
         $to[] = ltrim($number, 0);
+
         // Set parameters
         $parameters             = [];
         $parameters['username'] = $config['sms_iran_username'];
@@ -88,26 +104,27 @@ class Sms extends AbstractApi
         $parameters['udh']      = "";
         $parameters['recId']    = [0];
         $parameters['status']   = 0x0;
+
         // Send
         try {
             $client = new ZendSoapClient($config['sms_iran_soap_url']);
             $client->SendSms($parameters)->SendSmsResult;
             $delivery = 1;
+            $send = 1;
         } catch (SoapFault $fault) {
-            $content  = json::encode($fault);
+            //$content  = json::encode($fault);
             $delivery = 0;
+            $send = 0;
         }
-        // Save sms
-        $sms              = Pi::model('sms', $this->getModule())->createRow();
-        $sms->number      = $number;
-        $sms->content     = $content;
-        $sms->uid         = Pi::user()->getId();
-        $sms->time_create = time();
-        $sms->delivery    = $delivery;
-        $sms->save();
+
+        // result
+        return [
+            'delivery' => $delivery,
+            'send' => $send,
+        ];
     }
 
-    public function sendSmsFrance($content, $number)
+    protected function sendSmsFrance($content, $number)
     {
         return false;
     }

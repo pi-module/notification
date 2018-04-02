@@ -30,6 +30,22 @@ return [
             'filter'   => 'string',
         ],
         // Sms
+        'sms_send_time'  => [
+            'title'       => _a('Set send time'),
+            'description' => _a('If select send sms by cron, need install tools module and set cron job time'),
+            'edit'        => [
+                'type'    => 'select',
+                'options' => [
+                    'options' => [
+                        'live'   => _a('Live'),
+                        'cron'   => _a('Cron'),
+                    ],
+                ],
+            ],
+            'filter'      => 'text',
+            'value'       => 'live',
+            'category'    => 'sms',
+        ],
         'sms_send_country'  => [
             'title'       => _a('Select country for use local sms system'),
             'description' => '',

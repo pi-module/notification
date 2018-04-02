@@ -39,6 +39,11 @@ class Update extends BasicUpdate
     {
         $moduleVersion = $e->getParam('version');
 
+        // Set sms model
+        $smsModel = Pi::model('sms', $this->module);
+        $smsTable = $smsModel->getTable();
+        $smsAdapter = $smsModel->getAdapter();
+
         // Update to version 0.1.2
         if (version_compare($moduleVersion, '0.1.2', '<')) {
             // Add table : push
@@ -67,6 +72,34 @@ EOD;
                         . $exception->getMessage(),
                 ]);
 
+                return false;
+            }
+        }
+
+        // Update to version 0.2.1
+        if (version_compare($moduleVersion, '0.2.1', '<')) {
+            // Alter table : ADD send
+            $sql = sprintf("ALTER TABLE %s `send` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0'", $smsTable);
+            try {
+                $smsAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status' => false,
+                    'message' => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+                return false;
+            }
+            // Alter table : Update all send
+            $sql = sprintf("UPDATE %s SET `send` = 1", $smsTable);
+            try {
+                $smsAdapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status' => false,
+                    'message' => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
                 return false;
             }
         }
