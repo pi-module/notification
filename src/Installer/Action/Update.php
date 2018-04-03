@@ -79,7 +79,7 @@ EOD;
         // Update to version 0.2.1
         if (version_compare($moduleVersion, '0.2.1', '<')) {
             // Alter table : ADD send
-            $sql = sprintf("ALTER TABLE %s `send` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0'", $smsTable);
+            $sql = sprintf("ALTER TABLE %s ADD `send` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0'", $smsTable);
             try {
                 $smsAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
