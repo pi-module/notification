@@ -57,6 +57,9 @@ class Cron extends AbstractApi
                         ['id' => $row->id]
                     );
                 }
+
+                // Set log
+                Pi::service('audit')->log('cron', $result['send']);
             }
 
             // Set log
