@@ -13,6 +13,7 @@
 
 namespace Module\Notification\Api;
 
+use Pi;
 use Pi\Application\Api\AbstractApi;
 
 class Cron extends AbstractApi
@@ -22,34 +23,48 @@ class Cron extends AbstractApi
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
 
-        // Set info
-        $where = ['send' => 0];
-        $order = ['time_create ASC', 'id ASC'];
-        $limit = 25;
+        // Check cron active for this module
+        if ($config['module_cron']) {
 
-        // select sms
-        $select = Pi::model('sms', $this->getModule())->select()->where($where)->order($order)->limit($limit);
-        $rowset = Pi::model('sms', $this->getModule())->selectWith($select);
+            // Set log
+            Pi::service('audit')->log('cron', 'notification - Start cron on server');
 
-        // Make list
-        foreach ($rowset as $row) {
-            // Send
-            switch ($config['sms_send_country']) {
-                case 'iran':
-                    $result = $this->sendSmsIran($row->content, $row->number);
-                    break;
+            // Set info
+            $where = ['send' => 0];
+            $order = ['time_create ASC', 'id ASC'];
+            $limit = 25;
 
-                case 'france':
-                    $result = $this->sendSmsFrance($row->content, $row->number);
-                    break;
+            // select sms
+            $select = Pi::model('sms', $this->getModule())->select()->where($where)->order($order)->limit($limit);
+            $rowset = Pi::model('sms', $this->getModule())->selectWith($select);
+
+            // Make list
+            foreach ($rowset as $row) {
+                // Send
+                switch ($config['sms_send_country']) {
+                    case 'iran':
+                        $result = Pi::api('sms', 'notification')->sendSmsIran($row->content, $row->number);
+                        break;
+
+                    case 'france':
+                        $result = Pi::api('sms', 'notification')->sendSmsFrance($row->content, $row->number);
+                        break;
+                }
+                // Update result
+                if (isset($result['send']) && $result['send'] == 1) {
+                    Pi::model('sms', $this->getModule())->update(
+                        ['send' => $result['send'], 'delivery' => $result['delivery']],
+                        ['id' => $row->id]
+                    );
+                }
             }
-            // Update result
-            if (isset($result['send']) && $result['send'] == 1) {
-                Pi::model('sms', $this->getModule())->update(
-                    ['send' => $result['send'], 'delivery' => $result['delivery']],
-                    ['id' => $row->id]
-                );
-            }
+
+            // Set log
+            Pi::service('audit')->log('cron', 'notification - End cron on server');
+
+        } else {
+            // Set log
+            Pi::service('audit')->log('cron', 'notification - cron system not active for this module');
         }
     }
 }

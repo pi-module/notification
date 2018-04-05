@@ -20,6 +20,10 @@ return [
             'title' => _a('Sms'),
             'name'  => 'sms',
         ],
+        [
+            'title' => _a('Cron'),
+            'name'  => 'cron',
+        ],
     ],
     'item'     => [
         // Admin
@@ -86,6 +90,15 @@ return [
             'title'    => _a('Iran sms panel soap url'),
             'edit'     => 'text',
             'filter'   => 'string',
+        ],
+        // Cron
+        'module_cron'                    => [
+            'category'    => 'cron',
+            'title'       => _a('Active this module cron system'),
+            'description' => '',
+            'edit'        => 'checkbox',
+            'filter'      => 'number_int',
+            'value'       => 1,
         ],
     ],
 ];

@@ -54,7 +54,7 @@ class Sms extends AbstractApi
         }
     }
 
-    protected function send($content, $number)
+    public function send($content, $number)
     {
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
@@ -84,7 +84,7 @@ class Sms extends AbstractApi
         $sms->save();
     }
 
-    protected function sendSmsIran($content, $number)
+    public function sendSmsIran($content, $number)
     {
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
@@ -124,7 +124,7 @@ class Sms extends AbstractApi
         ];
     }
 
-    protected function sendSmsFrance($content, $number)
+    public function sendSmsFrance($content, $number)
     {
         return false;
     }
