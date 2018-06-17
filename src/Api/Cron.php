@@ -40,6 +40,16 @@ class Cron extends AbstractApi
 
             // Make list
             foreach ($rowset as $row) {
+
+                // Update result
+                //if (isset($result['send']) && $result['send'] == 1) {
+                    Pi::model('sms', $this->getModule())->update(
+                        //['send' => $result['send'], 'delivery' => $result['delivery']],
+                        ['send' => 1, 'delivery' => 1],
+                        ['id' => $row->id]
+                    );
+                //}
+
                 // Send
                 switch ($config['sms_send_country']) {
                     case 'iran':
@@ -50,13 +60,7 @@ class Cron extends AbstractApi
                         $result = Pi::api('sms', 'notification')->sendSmsFrance($row->content, $row->number);
                         break;
                 }
-                // Update result
-                if (isset($result['send']) && $result['send'] == 1) {
-                    Pi::model('sms', $this->getModule())->update(
-                        ['send' => $result['send'], 'delivery' => $result['delivery']],
-                        ['id' => $row->id]
-                    );
-                }
+
 
                 // Set log
                 Pi::service('audit')->log('cron', $result['send']);
