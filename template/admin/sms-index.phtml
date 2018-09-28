@@ -6,13 +6,13 @@
             <?php foreach ($list as $sms) { ?>
                 <div class="message-single clearfix">
                     <ul class="list-inline small text-muted">
-                        <li><?php _e('To'); ?>
+                        <li class="list-inline-item"><?php _e('To'); ?>
                             : <?php echo $sms['user']['avatar-small']; ?> <?php echo $sms['user']['name']; ?></li>
-                        <li class="message-divider">|</li>
+                        <li class="list-inline-item message-divider">|</li>
                         <li><?php _e('Number'); ?> : <?php echo $sms['number']; ?></li>
-                        <li class="message-divider">|</li>
+                        <li class="list-inline-item message-divider">|</li>
                         <li><?php _e('Send on'); ?> : <?php echo $sms['time_create_view']; ?></li>
-                        <li class="message-divider">|</li>
+                        <li class="list-inline-item message-divider">|</li>
                         <li><?php _e('ID'); ?> : <?php echo $sms['id']; ?></li>
                     </ul>
                     <div class="message-content">
