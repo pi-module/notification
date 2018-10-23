@@ -12,15 +12,15 @@ $this->backbone();
             <?php foreach ($list as $push) { ?>
                 <div class="message-single clearfix">
                     <ul class="list-inline small text-muted">
-                        <li><?php _e('Send on'); ?> : <?php echo $push['time_create_view']; ?></li>
-                        <li class="message-divider">|</li>
-                        <li><?php _e('ID'); ?> : <?php echo $push['id']; ?></li>
-                        <li class="message-divider">|</li>
-                        <li><?php _e('To'); ?> : <?php echo $push['to']; ?></li>
-                        <li class="message-divider">|</li>
-                        <li><?php _e('Time to live'); ?> : <?php echo $push['time_to_live']; ?></li>
-                        <li class="message-divider">|</li>
-                        <li><?php _e('Sound'); ?> : <?php echo $push['sound']; ?></li>
+                        <li class="list-inline-item"><?php _e('Send on'); ?> : <?php echo $push['time_create_view']; ?></li>
+                        <li class="message-divider list-inline-item">|</li>
+                        <li class="list-inline-item"><?php _e('ID'); ?> : <?php echo $push['id']; ?></li>
+                        <li class="message-divider list-inline-item">|</li>
+                        <li class="list-inline-item"><?php _e('To'); ?> : <?php echo $push['to']; ?></li>
+                        <li class="message-divider list-inline-item">|</li>
+                        <li class="list-inline-item"><?php _e('Time to live'); ?> : <?php echo $push['time_to_live']; ?></li>
+                        <li class="message-divider list-inline-item">|</li>
+                        <li class="list-inline-item"><?php _e('Sound'); ?> : <?php echo $push['sound']; ?></li>
                     </ul>
                     <div class="message-title">
                         <?php echo $push['title']; ?>
