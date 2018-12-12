@@ -1,15 +1,16 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt New BSD License
  */
 
 /**
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Notification\Controller\Admin;
 
 use Pi;
@@ -24,12 +25,12 @@ class ToolsController extends ActionController
         // Get config
         $config = Pi::service('registry')->config->read($module);
         // Set cron url
-        $cronUrl = Pi::url($this->url('default', array(
-        	'module'      => 'notification',
-        	'controller'  => 'cron',
-        	'action'      => 'index',
-        	'password'    => $config['cron_password'],
-        )));
+        $cronUrl = Pi::url($this->url('default', [
+            'module'     => 'notification',
+            'controller' => 'cron',
+            'action'     => 'index',
+            'password'   => $config['cron_password'],
+        ]));
         // Set template
         $this->view()->setTemplate('tools_index');
         $this->view()->assign('cronUrl', $cronUrl);

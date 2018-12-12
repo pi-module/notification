@@ -15,21 +15,20 @@ namespace Module\Notification\Api;
 
 use Pi;
 use Pi\Application\Api\AbstractApi;
+use Zend\Soap\Client as ZendSoapClient;
+use Zend\Json\Json;
 
 /*
- * Pi::api('mail', 'notification')->send($to, $template, $information, $module, $uid);
+ * Pi::api('push', 'notification')->log($notification);
  */
 
-class Mail extends AbstractApi
+class Push extends AbstractApi
 {
-    public function send($to, $template, $information, $module, $uid = 0)
+    public function log($notification)
     {
-        Pi::service('notification')->send(
-            $to,
-            $template,
-            $information,
-            $module,
-            $uid
+        Pi::service('audit')->log(
+            'notification',
+            json_encode($notification)
         );
     }
 }

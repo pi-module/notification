@@ -1,15 +1,16 @@
 <?php
 /**
- * Pi Engine (http://pialog.org)
+ * Pi Engine (http://piengine.org)
  *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @link            http://code.piengine.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://piengine.org
+ * @license         http://piengine.org/license.txt New BSD License
  */
 
 /**
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
  */
+
 namespace Module\Notification\Api;
 
 use Pi;
@@ -27,9 +28,9 @@ class Sms extends AbstractApi
     public function sendToUser($content, $number = '')
     {
         if (empty($number)) {
-            $uid = Pi::user()->getId();
-            $fields = array('mobile');
-            $user = Pi::user()->get($uid, $fields);
+            $uid    = Pi::user()->getId();
+            $fields = ['mobile'];
+            $user   = Pi::user()->get($uid, $fields);
             if (!isset($user['mobile']) && empty($user['mobile'])) {
                 return false;
             }
@@ -57,57 +58,74 @@ class Sms extends AbstractApi
     {
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
-        // Select
-        switch ($config['sms_send_country']) {
-            case 'iran':
-                $this->sendSmsIran($content, $number);
-                break;
 
-            case 'france':
-                $this->sendSmsFrance($content, $number);
-                break;
+        // Check send time
+        if ($config['sms_send_time'] == 'live') {
+            // Select
+            switch ($config['sms_send_country']) {
+                case 'iran':
+                    $result = $this->sendSmsIran($content, $number);
+                    break;
+
+                case 'france':
+                    $result = $this->sendSmsFrance($content, $number);
+                    break;
+            }
         }
+
+        // Save sms
+        $sms              = Pi::model('sms', $this->getModule())->createRow();
+        $sms->number      = $number;
+        $sms->content     = $content;
+        $sms->uid         = Pi::user()->getId();
+        $sms->time_create = time();
+        $sms->delivery    = isset($result['delivery']) ? $result['delivery'] : 0;
+        $sms->send        = isset($result['send']) ? $result['send'] : 0;
+        $sms->save();
     }
 
-	public function sendSmsIran($content, $number)
-	{
+    public function sendSmsIran($content, $number)
+    {
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
+
         // Set mobile
-        $to = array();
+        $to   = [];
         $to[] = ltrim($number, 0);
+
         // Set parameters
-        $parameters = array();
+        $parameters             = [];
         $parameters['username'] = $config['sms_iran_username'];
         $parameters['password'] = $config['sms_iran_password'];
-        $parameters['from'] = $config['sms_iran_number'];
-        $parameters['to'] = $to;
-        $parameters['text'] = $content;
-        $parameters['isflash'] = false;
-        $parameters['udh'] = "";
-        $parameters['recId'] = array(0);
-        $parameters['status'] = 0x0;
+        $parameters['from']     = $config['sms_iran_number'];
+        $parameters['to']       = $to;
+        $parameters['text']     = $content;
+        $parameters['isflash']  = false;
+        $parameters['udh']      = "";
+        $parameters['recId']    = [0];
+        $parameters['status']   = 0x0;
+
         // Send
         try {
             $client = new ZendSoapClient($config['sms_iran_soap_url']);
             $client->SendSms($parameters)->SendSmsResult;
             $delivery = 1;
+            $send = 1;
         } catch (SoapFault $fault) {
-            $content = json::encode($fault);
+            //$content  = json::encode($fault);
             $delivery = 0;
+            $send = 0;
         }
-        // Save sms
-    	$sms = Pi::model('sms', $this->getModule())->createRow();
-    	$sms->number = $number;
-    	$sms->content = $content;
-    	$sms->uid = Pi::user()->getId();
-    	$sms->time_create = time();
-        $sms->delivery = $delivery;
-    	$sms->save();
-	}
 
-	public function sendSmsFrance($content, $number)
-	{
-	    return false;
+        // result
+        return [
+            'delivery' => $delivery,
+            'send' => $send,
+        ];
+    }
+
+    public function sendSmsFrance($content, $number)
+    {
+        return false;
     }
 }
