@@ -20,7 +20,7 @@ return [
         'logo'        => 'image/logo.png',
         'readme'      => 'docs/readme.txt',
         'demo'        => 'http://piengine.org',
-        'icon'        => 'fa-bell-o',
+        'icon'        => 'fa-bell',
     ],
     // Author information
     'author'   => [
