@@ -1,0 +1,105 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi\n"
+"POT-Creation-Date: 2019-04-02 20:05+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Pi\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _a;_t\n"
+"X-Poedit-Basepath: ../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: config/config.php:16
+msgid "Admin"
+msgstr "Admin"
+
+#: config/config.php:20 config/navigation.php:28 config/page.php:22
+#: config/permission.php:23
+msgid "Sms"
+msgstr "Sms"
+
+#: config/config.php:24 config/config.php:45
+msgid "Cron"
+msgstr "Cron"
+
+#: config/config.php:32
+msgid "Admin mobile number"
+msgstr "Admin numéro téléphone mobile"
+
+#: config/config.php:38
+msgid "Set send time"
+msgstr "Définir l'heure d'envoi"
+
+#: config/config.php:39
+msgid "If select send sms by cron, need install tools module and set cron job time"
+msgstr "Si SMS par cron est sélectionné, vous devez installer le module Tools et définir l'heure du cron job"
+
+#: config/config.php:44
+msgid "Live"
+msgstr "Live"
+
+#: config/config.php:54
+msgid "Select country for use local sms system"
+msgstr "Sélectionnez le pays pour utiliser le système SMS local"
+
+#: config/config.php:60
+msgid "Not set"
+msgstr "Non défini"
+
+#: config/config.php:61
+msgid "Iran"
+msgstr "Iran"
+
+#: config/config.php:62
+msgid "France"
+msgstr "France"
+
+#: config/config.php:72
+msgid "Iran sms panel username"
+msgstr "Iran sms panel username"
+
+#: config/config.php:78
+msgid "Iran sms panel password"
+msgstr "Iran sms panel password"
+
+#: config/config.php:84
+msgid "Iran sms panel number"
+msgstr "Iran sms panel number"
+
+#: config/config.php:90
+msgid "Iran sms panel soap url"
+msgstr "Iran sms panel soap url"
+
+#: config/config.php:97
+msgid "Active this module cron system"
+msgstr "Activer pour ce module le système de cron"
+
+#: config/module.php:16
+msgid "Notification"
+msgstr "Notification"
+
+#: config/module.php:17
+msgid "General Notification system"
+msgstr "General Notification system"
+
+#: config/navigation.php:19 config/page.php:17 config/permission.php:17
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: config/navigation.php:37 config/page.php:27 config/permission.php:29
+#| msgid "Notification"
+msgid "Push notification"
+msgstr "Push notification"
+
+#~ msgid "Cron password"
+#~ msgstr "واژه رمز کرون جاب"
+
+#~ msgid "Tools"
+#~ msgstr "ابزارها"
