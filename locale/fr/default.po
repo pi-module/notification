@@ -1,0 +1,229 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi\n"
+"POT-Creation-Date: 2019-04-02 20:03+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Pi\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ../..\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: src/Controller/Admin/PushController.php:193
+msgid "Send push notification"
+msgstr "Envoyer une notification push"
+
+#: src/Form/PushForm.php:43
+msgid "Device token"
+msgstr "Device token"
+
+#: src/Form/PushForm.php:49 src/Form/PushForm.php:66
+msgid "Use `|` as delimiter to separate"
+msgstr "Utiliser `|` comme délimiteur pour séparer"
+
+#: src/Form/PushForm.php:60
+msgid "User ids"
+msgstr "Utiliser les IDs"
+
+#: src/Form/PushForm.php:77
+msgid "Topic"
+msgstr "Sujet"
+
+#: src/Form/PushForm.php:94
+msgid "Message"
+msgstr "Message"
+
+#: src/Form/PushForm.php:109
+msgid "Send"
+msgstr "Envoyer"
+
+#: template/admin/push-index.phtml:7
+msgid ""
+"Website still dont send any push notification to mobile apps, for setup push "
+"notification service and send push notification to users please check this "
+"tips"
+msgstr ""
+"Le site web n'envoie pas pour l'instant de notification push aux "
+"applications mobiles, pour configurer le service de notification push et "
+"envoyer une notification push aux utilisateurs, merci de vérifiez ces points "
+"de contrôle"
+
+#: template/admin/push-index.phtml:9
+#, php-format
+msgid ""
+"Push notification work by Firebase Cloud Messaging, for more information "
+"please check %s"
+msgstr ""
+"La notification push fonctionne avec Firebase Cloud Messaging, pour plus "
+"d'informations voir %s"
+
+#: template/admin/push-index.phtml:10
+msgid ""
+"Make sure your website mobile apps support push notification service, if not "
+"please call your app developer"
+msgstr ""
+"Assurez-vous que votre application mobile supporte les notifications push, "
+"sinon demandez à votre développeur app mobile"
+
+#: template/admin/push-index.phtml:11
+msgid "Setup Firebase Cloud Messaging service on google console"
+msgstr "Paramétrer le Service Firebase Cloud Messaging sur la console google"
+
+#: template/admin/push-index.phtml:13
+#, php-format
+msgid "Setup config file on : %s"
+msgstr "Paramétrer le fichier de configuration sur : %s"
+
+#: template/admin/push-index.phtml:15
+msgid "Set server key on `fcm_server_key`"
+msgstr "Paramétrez la clef serveur comme `fcm_server_key`"
+
+#: template/admin/push-index.phtml:16
+msgid "Set topic name or token on `fcm_token` if needed"
+msgstr "Paramétrer le nom du topic ou le token comme `fcm_token` si nécessaire"
+
+#: template/admin/push-index.phtml:20
+msgid "We have some methods for push notification"
+msgstr "Nous proposons plusieurs méthodes de notification push"
+
+#: template/admin/push-index.phtml:22 template/admin/push-index.phtml:38
+msgid "Push to all users"
+msgstr "Envoyer à tous les utilsateurs"
+
+#: template/admin/push-index.phtml:23
+msgid "Push to list or single of user ides"
+msgstr "Envoyer à une liste ou un numéro ID"
+
+#: template/admin/push-index.phtml:24
+msgid "Push to list or single of device tokens"
+msgstr "Envoyer à une liste ou à un numéro de device token"
+
+#: template/admin/push-index.phtml:25 template/admin/push-index.phtml:54
+msgid "Push to topic"
+msgstr "Envoyer selon le sujet topic"
+
+#: template/admin/push-index.phtml:31
+msgid "Push notification"
+msgstr "Notification Push"
+
+#: template/admin/push-index.phtml:40
+msgid "Here you can push notification to all users than have device token"
+msgstr ""
+"Ici vous pouvez envoyer une notification push à tous les utilisateurs qui "
+"ont le device token"
+
+#: template/admin/push-index.phtml:44 template/admin/push-index.phtml:60
+#: template/admin/push-index.phtml:76 template/admin/push-index.phtml:92
+msgid "Push"
+msgstr "Push"
+
+#: template/admin/push-index.phtml:56
+msgid "Here you can push notification to selected topic on FCM"
+msgstr ""
+"Ici vous pouvez envoyer une notification push sur les sujets sélectionnés "
+"via FCM"
+
+#: template/admin/push-index.phtml:70
+msgid "Push to user id"
+msgstr "Envoyer à une ID utilisateur"
+
+#: template/admin/push-index.phtml:72
+msgid ""
+"Pust list of user ides ( or single id ) here, system send notification to "
+"all available device tokens on FCM"
+msgstr ""
+"Saisir ici la liste des IDs utilisateurs (ou ID unique), le système envoie "
+"une notification à tous les device token disponibles sur FCM"
+
+#: template/admin/push-index.phtml:86
+msgid "Push by device token"
+msgstr "Push by device token"
+
+#: template/admin/push-index.phtml:88
+msgid ""
+"Pust list of device tokens ( or device token ) here, system send "
+"notification to all available device tokens on FCM"
+msgstr ""
+"Saisir ici la liste de device token (un device token unique), le système "
+"envoie une notification à tous les device token disponibles sur FCM"
+
+#: template/admin/push-index.phtml:126 template/admin/push-index.phtml:142
+#: template/admin/push-index.phtml:158 template/admin/push-index.phtml:174
+msgid "Push notification send successfully!"
+msgstr "La notification push a été envoyée avec succès !"
+
+#: template/admin/push-index.phtml:128 template/admin/push-index.phtml:144
+#: template/admin/push-index.phtml:160 template/admin/push-index.phtml:176
+msgid ""
+"Error to send push notification, please check your mobile app and setting on "
+"website and firebase"
+msgstr ""
+"Erreur dans l'envoi de la notification pusn, vérifiez votre application "
+"mobile, les paramétrages site web et firebase"
+
+#: template/admin/sms-index.phtml:4
+msgid "List of send messages"
+msgstr "Liste des messages envoyés"
+
+#: template/admin/sms-index.phtml:9
+msgid "To"
+msgstr "A"
+
+#: template/admin/sms-index.phtml:12
+msgid "Number"
+msgstr "Nombre"
+
+#: template/admin/sms-index.phtml:14
+msgid "Send on"
+msgstr "Envoyé le"
+
+#: template/admin/sms-index.phtml:16
+msgid "ID"
+msgstr "ID"
+
+#: template/admin/sms-index.phtml:29
+msgid ""
+"Sms list is empty ! website still dont send any sms to users, for setup sms "
+"service and send sms to users please check this tips"
+msgstr ""
+"la liste SMS est vide ! Le site web n'envoie pas pour l'instant de sms aux "
+"applications mobiles, pour configurer le service sms et envoyer un sms aux "
+"utilisateurs, merci de vérifiez ces points de contrôle"
+
+#: template/admin/sms-index.phtml:31
+msgid "Buy sms service and panel from one of sms service providers"
+msgstr "Acheter un service SMS d'un provider SMS"
+
+#: template/admin/sms-index.phtml:32
+msgid "Check your sms service active"
+msgstr "S'assurer que le service SMS est actif"
+
+#: template/admin/sms-index.phtml:33
+msgid "Check website support your sms api"
+msgstr "S'assurer que le site web supporte votre api SMS"
+
+#: template/admin/sms-index.phtml:34
+msgid "Check sms service config on module setting"
+msgstr ""
+"Vérifier la configuration du service SMS depuis les paramétrages du module"
+
+#: template/admin/sms-index.phtml:35
+msgid ""
+"If all of this steps is true, website send sms after some user actions like "
+"make order"
+msgstr ""
+"Si toutes ces étapes sont correctes, le site web envoie un SMS suite à une "
+"action utilisateur comme par exemple faire une commande"
+
+#~ msgid "Cron URL"
+#~ msgstr "لینک کرون جاب"
+
+#~ msgid "Cron Command"
+#~ msgstr "دستور کرون جاب"
