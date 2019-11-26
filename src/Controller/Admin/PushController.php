@@ -24,86 +24,44 @@ class PushController extends ActionController
 {
     public function indexAction()
     {
-        // Get page
-        /* $page  = $this->params('page', 1);
-        $list  = [];
-        $limit = 50;
-        // Set info
-        $order  = ['time_create DESC', 'id DESC'];
-        $offset = (int)($page - 1) * $limit;
-        // Get info
-        $select = $this->getModel('push')->select()->order($order)->offset($offset)->limit($limit);
-        $rowset = $this->getModel('push')->selectWith($select);
-        // Make list
-        foreach ($rowset as $row) {
-            $list[$row->id] = $row->toArray();
-            // markup content
-            $list[$row->id]['body'] = Pi::service('markup')->compile(
-                $row->body,
-                'html',
-                ['nl2br' => false]
-            );
-            // Time send view
-            $list[$row->id]['time_create_view'] = _date($row->time_create);
-        }
-
-        // Set paginator
-        $columns   = ['count' => new Expression('count(*)')];
-        $select    = $this->getModel('push')->select()->columns($columns);
-        $count     = $this->getModel('push')->selectWith($select)->current()->count;
-        $paginator = Paginator::factory(intval($count));
-        $paginator->setItemCountPerPage($limit);
-        $paginator->setCurrentPageNumber($page);
-        $paginator->setUrlOptions([
-            'router' => $this->getEvent()->getRouter(),
-            'route'  => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
-            'params' => array_filter([
-                'module'     => $this->getModule(),
-                'controller' => 'push',
-                'action'     => 'index',
-            ]),
-        ]); */
-
         // Set push url
         $pushUrl = [
             'all'   => pi::url(
                 $this->url(
                     '', [
-                    'action' => 'send',
-                    'type'   => 'all',
-                ]
+                        'action' => 'send',
+                        'type'   => 'all',
+                    ]
                 )
             ),
             'token' => pi::url(
                 $this->url(
                     '', [
-                    'action' => 'send',
-                    'type'   => 'token',
-                ]
+                        'action' => 'send',
+                        'type'   => 'token',
+                    ]
                 )
             ),
             'user'  => pi::url(
                 $this->url(
                     '', [
-                    'action' => 'send',
-                    'type'   => 'user',
-                ]
+                        'action' => 'send',
+                        'type'   => 'user',
+                    ]
                 )
             ),
             'topic' => pi::url(
                 $this->url(
                     '', [
-                    'action' => 'send',
-                    'type'   => 'topic',
-                ]
+                        'action' => 'send',
+                        'type'   => 'topic',
+                    ]
                 )
             ),
         ];
 
         // Set view
         $this->view()->setTemplate('push-index');
-        //$this->view()->assign('list', $list);
-        //$this->view()->assign('paginator', $paginator);
         $this->view()->assign('pushUrl', $pushUrl);
     }
 
@@ -112,6 +70,7 @@ class PushController extends ActionController
         $return = [];
         // Get page
         $type = $this->params('type');
+
         // Set option
         $option = [
             'type' => $type,
@@ -128,7 +87,8 @@ class PushController extends ActionController
 
                 // Set data
                 $notification = [
-                    'message' => $values['message'],
+                    'message'          => $values['message'],
+                    'registration_ids' => [],
                 ];
 
                 // Set device id or topic
@@ -138,16 +98,16 @@ class PushController extends ActionController
                         break;
 
                     case 'user':
-                        $userList = explode('|', $values['user']);
                         // Set info
-                        $notification['registration_ids'] = [];
-                        $columns                          = ['uid', 'device_token'];
-                        $where                            = ['device_token IS NOT NULL ?', 'uid' => $userList];
-                        $limit                            = 1000;
-                        $order                            = ['uid DESC'];
+                        $columns  = ['uid', 'device_token'];
+                        $where    = ['device_token IS NOT NULL ?', 'uid' => explode('|', $values['user'])];
+                        $limit    = 1000;
+                        $order    = ['uid DESC'];
+
                         // Select
                         $select = Pi::model('profile', 'user')->select()->columns($columns)->where($where)->order($order)->limit($limit);
                         $rowset = Pi::model('profile', 'user')->selectWith($select);
+
                         // Set data
                         foreach ($rowset as $row) {
                             $notification['registration_ids'][] = $row->device_token;
@@ -164,14 +124,15 @@ class PushController extends ActionController
 
                     case 'all':
                         // Set info
-                        $notification['registration_ids'] = [''];
-                        $columns                          = ['uid', 'device_token'];
-                        $where                            = ['device_token IS NOT NULL ?'];
-                        $limit                            = 1000;
-                        $order                            = ['uid DESC'];
+                        $columns = ['uid', 'device_token'];
+                        $where   = ['device_token IS NOT NULL ?'];
+                        $limit   = 1000;
+                        $order   = ['uid DESC'];
+
                         // Select
                         $select = Pi::model('profile', 'user')->select()->columns($columns)->where($where)->order($order)->limit($limit);
                         $rowset = Pi::model('profile', 'user')->selectWith($select);
+
                         // Set data
                         foreach ($rowset as $row) {
                             $notification['registration_ids'][] = $row->device_token;
@@ -206,6 +167,7 @@ class PushController extends ActionController
         } else {
             $form->setAttribute('action', $this->url('', ['action' => 'send', 'type' => $type]));
         }
+
         // Set view
         $this->view()->setTemplate('system:component/form-popup');
         $this->view()->assign('title', __('Send push notification'));

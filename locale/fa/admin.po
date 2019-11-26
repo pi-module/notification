@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi\n"
-"POT-Creation-Date: 2015-09-08 13:03+0430\n"
+"POT-Creation-Date: 2019-11-26 09:48+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Pi\n"
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
@@ -20,53 +20,69 @@ msgstr ""
 msgid "Admin"
 msgstr "مدیریت"
 
-#: config/config.php:20
-msgid "Cron"
-msgstr "کرون جاب"
-
-#: config/config.php:24
+#: config/config.php:20 config/navigation.php:28 config/page.php:22
+#: config/permission.php:23
 msgid "Sms"
 msgstr "پیامک"
+
+#: config/config.php:24 config/config.php:45
+msgid "Cron"
+msgstr "کرون جاب"
 
 #: config/config.php:32
 msgid "Admin mobile number"
 msgstr "شماره تلفن های مدیران"
 
-#: config/config.php:39
-msgid "Cron password"
-msgstr "واژه رمز کرون جاب"
+#: config/config.php:38
+msgid "Set send time"
+msgstr "زمان ارسال پیامک"
 
-#: config/config.php:46
+#: config/config.php:39
+msgid ""
+"If select send sms by cron, need install tools module and set cron job time"
+msgstr ""
+"اگر ارسال پیامک با کرون جاب را انتخاب کنید، باید ماژول tools را نصب کنید و "
+"کرون جاب را در آن فعال کنید"
+
+#: config/config.php:44
+msgid "Live"
+msgstr "هم زمان"
+
+#: config/config.php:54
 msgid "Select country for use local sms system"
 msgstr "انتخاب کشور برای استفاده از سیستم ارسال پیامک محلی"
 
-#: config/config.php:52
+#: config/config.php:60
 msgid "Not set"
 msgstr "تنظیم نشده"
 
-#: config/config.php:53
+#: config/config.php:61
 msgid "Iran"
 msgstr "ایران"
 
-#: config/config.php:54
+#: config/config.php:62
 msgid "France"
 msgstr "فرانسه"
 
-#: config/config.php:64
+#: config/config.php:72
 msgid "Iran sms panel username"
-msgstr "نام کاربری پنل پیامک ایران "
+msgstr "نام کاربری پنل پیامک ایران"
 
-#: config/config.php:70
+#: config/config.php:78
 msgid "Iran sms panel password"
-msgstr "واژه رمز پنل پیامک ایران "
+msgstr "واژه رمز پنل پیامک ایران"
 
-#: config/config.php:76
+#: config/config.php:84
 msgid "Iran sms panel number"
-msgstr "شماره خط پنل پیامک ایران "
+msgstr "شماره خط پنل پیامک ایران"
 
-#: config/config.php:82
+#: config/config.php:90
 msgid "Iran sms panel soap url"
-msgstr "آدرس ارسال soap پنل پیامک ایران "
+msgstr "آدرس ارسال soap پنل پیامک ایران"
+
+#: config/config.php:97
+msgid "Active this module cron system"
+msgstr "فعال سازی سیستم کرون جاب برای این ماژول"
 
 #: config/module.php:16
 msgid "Notification"
@@ -76,6 +92,16 @@ msgstr "آگاهی‌رسانی"
 msgid "General Notification system"
 msgstr "سیستم عمومی آگاهی‌رسانی"
 
-#: config/navigation.php:16 config/page.php:17 config/permission.php:17
-msgid "Tools"
-msgstr "ابزارها"
+#: config/navigation.php:19 config/page.php:17 config/permission.php:17
+msgid "Dashboard"
+msgstr "داشبورد"
+
+#: config/navigation.php:37 config/page.php:27 config/permission.php:29
+msgid "Push notification"
+msgstr "ارسال آگاهی‌رسانی"
+
+#~ msgid "Cron password"
+#~ msgstr "واژه رمز کرون جاب"
+
+#~ msgid "Tools"
+#~ msgstr "ابزارها"

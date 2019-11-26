@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi payment module\n"
-"POT-Creation-Date: 2015-04-07 14:27+0330\n"
+"POT-Creation-Date: 2019-11-26 09:54+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Pi\n"
@@ -9,76 +9,90 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _a;_t\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-2.5.0/usr/module/"
-"notification\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:16
+#: config/config.php:16
 msgid "Admin"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:20
-msgid "Cron"
-msgstr ""
-
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:24
+#: config/config.php:20 config/navigation.php:28 config/page.php:22
+#: config/permission.php:23
 msgid "Sms"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:32
+#: config/config.php:24 config/config.php:45
+msgid "Cron"
+msgstr ""
+
+#: config/config.php:32
 msgid "Admin mobile number"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:39
-msgid "Cron password"
+#: config/config.php:38
+msgid "Set send time"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:46
+#: config/config.php:39
+msgid "If select send sms by cron, need install tools module and set cron job time"
+msgstr ""
+
+#: config/config.php:44
+msgid "Live"
+msgstr ""
+
+#: config/config.php:54
 msgid "Select country for use local sms system"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:52
+#: config/config.php:60
 msgid "Not set"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:53
+#: config/config.php:61
 msgid "Iran"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:54
+#: config/config.php:62
 msgid "France"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:64
+#: config/config.php:72
 msgid "Iran sms panel username"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:70
+#: config/config.php:78
 msgid "Iran sms panel password"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:76
+#: config/config.php:84
 msgid "Iran sms panel number"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/config.php:82
+#: config/config.php:90
 msgid "Iran sms panel soap url"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/module.php:16
+#: config/config.php:97
+msgid "Active this module cron system"
+msgstr ""
+
+#: config/module.php:16
 msgid "Notification"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/module.php:17
+#: config/module.php:17
 msgid "General Notification system"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/navigation.php:16
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/page.php:17
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/config/permission.php:17
-msgid "Tools"
+#: config/navigation.php:19 config/page.php:17 config/permission.php:17
+msgid "Dashboard"
+msgstr ""
+
+#: config/navigation.php:37 config/page.php:27 config/permission.php:29
+msgid "Push notification"
 msgstr ""

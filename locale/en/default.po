@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi payment module\n"
-"POT-Creation-Date: 2015-04-07 14:27+0330\n"
+"POT-Creation-Date: 2019-11-26 09:54+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Pi\n"
@@ -9,14 +9,203 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-2.5.0/usr/module/"
-"notification\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: /var/www/html/local/pi/pi-2.5.0/usr/module/notification/template/admin/tools_index.phtml:3
-msgid "Cron URL"
+#: src/Api/Sms.php:93
+msgid "Nothing todo !"
+msgstr ""
+
+#: src/Api/Sms.php:121 src/Api/Sms.php:154
+msgid "Sms send successfully !"
+msgstr ""
+
+#: src/Api/Sms.php:125 src/Api/Sms.php:157
+msgid "Error to send SMS"
+msgstr ""
+
+#: src/Controller/Admin/PushController.php:169
+msgid "Send push notification"
+msgstr ""
+
+#: src/Form/PushForm.php:44
+msgid "Device token"
+msgstr ""
+
+#: src/Form/PushForm.php:50 src/Form/PushForm.php:69
+msgid "Use `|` as delimiter to separate"
+msgstr ""
+
+#: src/Form/PushForm.php:63
+msgid "User ids"
+msgstr ""
+
+#: src/Form/PushForm.php:82
+msgid "Topic"
+msgstr ""
+
+#: src/Form/PushForm.php:101
+msgid "Message"
+msgstr ""
+
+#: src/Form/PushForm.php:118
+msgid "Send"
+msgstr ""
+
+#: template/admin/push-index.phtml:8
+msgid ""
+"Website still dont send any push notification to mobile apps, for setup push "
+"notification service and send push notification to users please check this "
+"tips"
+msgstr ""
+
+#: template/admin/push-index.phtml:12
+#, php-format
+msgid ""
+"Push notification work by Firebase Cloud Messaging, for more information "
+"please check %s"
+msgstr ""
+
+#: template/admin/push-index.phtml:15
+msgid ""
+"Make sure your website mobile apps support push notification service, if not "
+"please call your app developer"
+msgstr ""
+
+#: template/admin/push-index.phtml:16
+msgid "Setup Firebase Cloud Messaging service on google console"
+msgstr ""
+
+#: template/admin/push-index.phtml:18
+#, php-format
+msgid "Setup config file on : %s"
+msgstr ""
+
+#: template/admin/push-index.phtml:20
+msgid "Set server key on `fcm_server_key`"
+msgstr ""
+
+#: template/admin/push-index.phtml:21
+msgid "Set topic name or token on `fcm_token` if needed"
+msgstr ""
+
+#: template/admin/push-index.phtml:25
+msgid "We have some methods for push notification"
+msgstr ""
+
+#: template/admin/push-index.phtml:27 template/admin/push-index.phtml:43
+msgid "Push to all users"
+msgstr ""
+
+#: template/admin/push-index.phtml:28
+msgid "Push to list or single of user ides"
+msgstr ""
+
+#: template/admin/push-index.phtml:29
+msgid "Push to list or single of device tokens"
+msgstr ""
+
+#: template/admin/push-index.phtml:30 template/admin/push-index.phtml:59
+msgid "Push to topic"
+msgstr ""
+
+#: template/admin/push-index.phtml:36
+msgid "Push notification"
+msgstr ""
+
+#: template/admin/push-index.phtml:45
+msgid "Here you can push notification to all users than have device token"
+msgstr ""
+
+#: template/admin/push-index.phtml:49 template/admin/push-index.phtml:65
+#: template/admin/push-index.phtml:83 template/admin/push-index.phtml:101
+msgid "Push"
+msgstr ""
+
+#: template/admin/push-index.phtml:61
+msgid "Here you can push notification to selected topic on FCM"
+msgstr ""
+
+#: template/admin/push-index.phtml:75
+msgid "Push to user id"
+msgstr ""
+
+#: template/admin/push-index.phtml:78
+msgid ""
+"Pust list of user ides ( or single id ) here, system send notification to "
+"all available device tokens on FCM"
+msgstr ""
+
+#: template/admin/push-index.phtml:93
+msgid "Push by device token"
+msgstr ""
+
+#: template/admin/push-index.phtml:96
+msgid ""
+"Pust list of device tokens ( or device token ) here, system send "
+"notification to all available device tokens on FCM"
+msgstr ""
+
+#: template/admin/push-index.phtml:135 template/admin/push-index.phtml:151
+#: template/admin/push-index.phtml:167 template/admin/push-index.phtml:183
+msgid "Push notification send successfully!"
+msgstr ""
+
+#: template/admin/push-index.phtml:137 template/admin/push-index.phtml:153
+#: template/admin/push-index.phtml:169 template/admin/push-index.phtml:185
+msgid ""
+"Error to send push notification, please check your mobile app and setting on "
+"website and firebase"
+msgstr ""
+
+#: template/admin/sms-index.phtml:4
+msgid "List of send messages"
+msgstr ""
+
+#: template/admin/sms-index.phtml:9
+msgid "To"
+msgstr ""
+
+#: template/admin/sms-index.phtml:12
+msgid "Number"
+msgstr ""
+
+#: template/admin/sms-index.phtml:14
+msgid "Send on"
+msgstr ""
+
+#: template/admin/sms-index.phtml:16
+msgid "ID"
+msgstr ""
+
+#: template/admin/sms-index.phtml:30
+msgid ""
+"Sms list is empty ! website still dont send any sms to users, for setup sms "
+"service and send sms to users please check this tips"
+msgstr ""
+
+#: template/admin/sms-index.phtml:33
+msgid "Buy sms service and panel from one of sms service providers"
+msgstr ""
+
+#: template/admin/sms-index.phtml:34
+msgid "Check your sms service active"
+msgstr ""
+
+#: template/admin/sms-index.phtml:35
+msgid "Check website support your sms api"
+msgstr ""
+
+#: template/admin/sms-index.phtml:36
+msgid "Check sms service config on module setting"
+msgstr ""
+
+#: template/admin/sms-index.phtml:37
+msgid ""
+"If all of this steps is true, website send sms after some user actions like "
+"make order"
 msgstr ""
