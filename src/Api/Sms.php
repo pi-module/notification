@@ -19,13 +19,13 @@ use Zend\Soap\Client as ZendSoapClient;
 use Zend\Json\Json;
 
 /*
- * Pi::api('sms', 'notification')->sendToUser($content, $number);
- * Pi::api('sms', 'notification')->sendToAdmin($content, $number);
+ * Pi::api('sms', 'notification')->sendToUser($content, $number, $operator);
+ * Pi::api('sms', 'notification')->sendToAdmin($content, $number, $operator);
  */
 
 class Sms extends AbstractApi
 {
-    public function sendToUser($content, $number = '')
+    public function sendToUser($content, $number = '', $operator = '')
     {
         if (empty($number)) {
             $uid    = Pi::user()->getId();
@@ -36,10 +36,10 @@ class Sms extends AbstractApi
             }
             $number = $user['mobile'];
         }
-        $this->send($content, $number);
+        $this->send($content, $number, $operator);
     }
 
-    public function sendToAdmin($content, $number = '')
+    public function sendToAdmin($content, $number = '', $operator = '')
     {
         if (empty($number)) {
             // Get config
@@ -50,11 +50,11 @@ class Sms extends AbstractApi
                 $this->send($content, $number);
             }
         } else {
-            $this->send($content, $number);
+            $this->send($content, $number, $operator);
         }
     }
 
-    public function send($content, $number)
+    public function send($content, $number, $operator = '')
     {
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
@@ -64,11 +64,11 @@ class Sms extends AbstractApi
             // Select
             switch ($config['sms_send_country']) {
                 case 'iran':
-                    $result = $this->sendSmsIran($content, $number);
+                    $result = $this->sendSmsIran($content, $number, $operator);
                     break;
 
                 case 'france':
-                    $result = $this->sendSmsFrance($content, $number);
+                    $result = $this->sendSmsFrance($content, $number, $operator);
                     break;
             }
         }
@@ -84,47 +84,86 @@ class Sms extends AbstractApi
         $sms->save();
     }
 
-    public function sendSmsIran($content, $number)
+    public function sendSmsIran($content, $number, $operator = '')
     {
+        // Set result
+        $result = [
+            'delivery' => 0,
+            'send'     => 0,
+            'message'  => __('Nothing todo !'),
+        ];
+
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
 
-        // Set mobile
-        $to   = [];
-        $to[] = ltrim($number, 0);
+        switch ($operator) {
+            case 'fanava':
+                $parameters                       = [];
+                $parameters['strServiceID']       = "RahyabSMS";
+                $parameters['strServiceToken']    = "R@hy@bSoap_V1";
+                $parameters['strMessageText']     = $content;
+                $parameters['strRecipientNumber'] = ltrim($number, 0);
+                $parameters['strSenderNumber']    = $config['sms_iran_number'];
+                $parameters['strNumberUsername']  = $config['sms_iran_username'];
+                $parameters['strNumberPassword']  = $config['sms_iran_password'];
+                $parameters['strNumberCompany']   = "FANAVASYSTEM";
+                $parameters['strIP']              = '';
+                $parameters['strResultMessage']   = '';
 
-        // Set parameters
-        $parameters             = [];
-        $parameters['username'] = $config['sms_iran_username'];
-        $parameters['password'] = $config['sms_iran_password'];
-        $parameters['from']     = $config['sms_iran_number'];
-        $parameters['to']       = $to;
-        $parameters['text']     = $content;
-        $parameters['isflash']  = false;
-        $parameters['udh']      = "";
-        $parameters['recId']    = [0];
-        $parameters['status']   = 0x0;
+                // Send
+                try {
+                    $client = new ZendSoapClient($config['sms_iran_soap_url']);
+                    $client->SendSMS_Single($parameters);
 
-        // Send
-        try {
-            $client = new ZendSoapClient($config['sms_iran_soap_url']);
-            $client->SendSms($parameters)->SendSmsResult;
-            $delivery = 1;
-            $send = 1;
-        } catch (SoapFault $fault) {
-            //$content  = json::encode($fault);
-            $delivery = 0;
-            $send = 0;
+                    $result = [
+                        'delivery' => 1,
+                        'send'     => 1,
+                        'message'  => __('Sms send successfully !'),
+                    ];
+
+                } catch (SoapFault $fault) {
+                    $result['message'] = __('Error to send SMS');
+                }
+                break;
+
+            default:
+                // Set mobile
+                $to   = [];
+                $to[] = ltrim($number, 0);
+
+                // Set parameters
+                $parameters             = [];
+                $parameters['username'] = $config['sms_iran_username'];
+                $parameters['password'] = $config['sms_iran_password'];
+                $parameters['from']     = $config['sms_iran_number'];
+                $parameters['to']       = $to;
+                $parameters['text']     = $content;
+                $parameters['isflash']  = false;
+                $parameters['udh']      = "";
+                $parameters['recId']    = [0];
+                $parameters['status']   = 0x0;
+
+                // Send
+                try {
+                    $client = new ZendSoapClient($config['sms_iran_soap_url']);
+                    $client->SendSms($parameters)->SendSmsResult;
+
+                    $result = [
+                        'delivery' => 1,
+                        'send'     => 1,
+                        'message'  => __('Sms send successfully !'),
+                    ];
+                } catch (SoapFault $fault) {
+                    $result['message'] = __('Error to send SMS');
+                }
+                break;
         }
 
         // result
-        return [
-            'delivery' => $delivery,
-            'send' => $send,
-        ];
+        return $result;
     }
 
-    public function sendSmsFrance($content, $number)
+    public function sendSmsFrance($content, $number, $operator = '')
     {
         return false;
     }
