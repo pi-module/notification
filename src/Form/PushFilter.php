@@ -23,41 +23,47 @@ class PushFilter extends InputFilter
         switch ($option['type']) {
             case 'token':
                 // device_token
-                $this->add([
-                    'name'     => 'device_token',
-                    'required' => true,
-                    'filters'  => [
-                        [
-                            'name' => 'StringTrim',
+                $this->add(
+                    [
+                        'name'     => 'device_token',
+                        'required' => true,
+                        'filters'  => [
+                            [
+                                'name' => 'StringTrim',
+                            ],
                         ],
-                    ],
-                ]);
+                    ]
+                );
                 break;
 
             case 'user':
                 // user
-                $this->add([
-                    'name'     => 'user',
-                    'required' => true,
-                    'filters'  => [
-                        [
-                            'name' => 'StringTrim',
+                $this->add(
+                    [
+                        'name'     => 'user',
+                        'required' => true,
+                        'filters'  => [
+                            [
+                                'name' => 'StringTrim',
+                            ],
                         ],
-                    ],
-                ]);
+                    ]
+                );
                 break;
 
             case 'topic':
                 // topic
-                $this->add([
-                    'name'     => 'topic',
-                    'required' => true,
-                    'filters'  => [
-                        [
-                            'name' => 'StringTrim',
+                $this->add(
+                    [
+                        'name'     => 'topic',
+                        'required' => true,
+                        'filters'  => [
+                            [
+                                'name' => 'StringTrim',
+                            ],
                         ],
-                    ],
-                ]);
+                    ]
+                );
                 break;
 
             case 'all':
@@ -65,14 +71,16 @@ class PushFilter extends InputFilter
                 break;
         }
         // message
-        $this->add([
-            'name'     => 'message',
-            'required' => true,
-            'filters'  => [
-                [
-                    'name' => 'StringTrim',
+        $this->add(
+            [
+                'name'     => 'message',
+                'required' => true,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
     }
 }

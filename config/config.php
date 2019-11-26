@@ -34,15 +34,15 @@ return [
             'filter'   => 'string',
         ],
         // Sms
-        'sms_send_time'  => [
+        'sms_send_time'     => [
             'title'       => _a('Set send time'),
             'description' => _a('If select send sms by cron, need install tools module and set cron job time'),
             'edit'        => [
                 'type'    => 'select',
                 'options' => [
                     'options' => [
-                        'live'   => _a('Live'),
-                        'cron'   => _a('Cron'),
+                        'live' => _a('Live'),
+                        'cron' => _a('Cron'),
                     ],
                 ],
             ],
@@ -92,7 +92,7 @@ return [
             'filter'   => 'string',
         ],
         // Cron
-        'module_cron'                    => [
+        'module_cron'       => [
             'category'    => 'cron',
             'title'       => _a('Active this module cron system'),
             'description' => '',

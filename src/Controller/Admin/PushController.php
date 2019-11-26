@@ -66,22 +66,38 @@ class PushController extends ActionController
 
         // Set push url
         $pushUrl = [
-            'all'   => pi::url($this->url('', [
-                'action' => 'send',
-                'type'   => 'all',
-            ])),
-            'token' => pi::url($this->url('', [
-                'action' => 'send',
-                'type'   => 'token',
-            ])),
-            'user'  => pi::url($this->url('', [
-                'action' => 'send',
-                'type'   => 'user',
-            ])),
-            'topic' => pi::url($this->url('', [
-                'action' => 'send',
-                'type'   => 'topic',
-            ])),
+            'all'   => pi::url(
+                $this->url(
+                    '', [
+                    'action' => 'send',
+                    'type'   => 'all',
+                ]
+                )
+            ),
+            'token' => pi::url(
+                $this->url(
+                    '', [
+                    'action' => 'send',
+                    'type'   => 'token',
+                ]
+                )
+            ),
+            'user'  => pi::url(
+                $this->url(
+                    '', [
+                    'action' => 'send',
+                    'type'   => 'user',
+                ]
+                )
+            ),
+            'topic' => pi::url(
+                $this->url(
+                    '', [
+                    'action' => 'send',
+                    'type'   => 'topic',
+                ]
+                )
+            ),
         ];
 
         // Set view
@@ -171,11 +187,13 @@ class PushController extends ActionController
                 $result = Pi::service('notification')->fcm($notification);
 
                 // Save log
-                Pi::api('push', 'notification')->log([
-                    'values'       => $values,
-                    'notification' => $notification,
-                    'result'       => $result,
-                ]);
+                Pi::api('push', 'notification')->log(
+                    [
+                        'values'       => $values,
+                        'notification' => $notification,
+                        'result'       => $result,
+                    ]
+                );
 
                 // Set return
                 $return['status'] = $result['status'];

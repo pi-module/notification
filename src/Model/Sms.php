@@ -20,13 +20,14 @@ class Sms extends Model
     /**
      * {@inheritDoc}
      */
-    protected $columns = [
-        'id',
-        'number',
-        'content',
-        'delivery',
-        'send',
-        'uid',
-        'time_create',
-    ];
+    protected $columns
+        = [
+            'id',
+            'number',
+            'content',
+            'delivery',
+            'send',
+            'uid',
+            'time_create',
+        ];
 }

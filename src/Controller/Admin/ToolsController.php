@@ -25,12 +25,16 @@ class ToolsController extends ActionController
         // Get config
         $config = Pi::service('registry')->config->read($module);
         // Set cron url
-        $cronUrl = Pi::url($this->url('default', [
-            'module'     => 'notification',
-            'controller' => 'cron',
-            'action'     => 'index',
-            'password'   => $config['cron_password'],
-        ]));
+        $cronUrl = Pi::url(
+            $this->url(
+                'default', [
+                'module'     => 'notification',
+                'controller' => 'cron',
+                'action'     => 'index',
+                'password'   => $config['cron_password'],
+            ]
+            )
+        );
         // Set template
         $this->view()->setTemplate('tools_index');
         $this->view()->assign('cronUrl', $cronUrl);

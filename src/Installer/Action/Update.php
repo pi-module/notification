@@ -40,8 +40,8 @@ class Update extends BasicUpdate
         $moduleVersion = $e->getParam('version');
 
         // Set sms model
-        $smsModel = Pi::model('sms', $this->module);
-        $smsTable = $smsModel->getTable();
+        $smsModel   = Pi::model('sms', $this->module);
+        $smsTable   = $smsModel->getTable();
         $smsAdapter = $smsModel->getAdapter();
 
         // Update to version 0.1.2
@@ -66,11 +66,13 @@ EOD;
             try {
                 $sqlHandler->queryContent($sql);
             } catch (\Exception $exception) {
-                $this->setResult('db', [
+                $this->setResult(
+                    'db', [
                     'status'  => false,
                     'message' => 'SQL schema query for author table failed: '
                         . $exception->getMessage(),
-                ]);
+                ]
+                );
 
                 return false;
             }
@@ -83,11 +85,13 @@ EOD;
             try {
                 $smsAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult(
+                    'db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]
+                );
                 return false;
             }
             // Alter table : Update all send
@@ -95,11 +99,13 @@ EOD;
             try {
                 $smsAdapter->query($sql, 'execute');
             } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status' => false,
+                $this->setResult(
+                    'db', [
+                    'status'  => false,
                     'message' => 'Table alter query failed: '
                         . $exception->getMessage(),
-                ));
+                ]
+                );
                 return false;
             }
         }

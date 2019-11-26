@@ -37,78 +37,88 @@ class PushForm extends BaseForm
         switch ($this->option['type']) {
             case 'token':
                 // device_token
-                $this->add([
-                    'name'       => 'device_token',
-                    'options'    => [
-                        'label' => __('Device token'),
-                    ],
-                    'attributes' => [
-                        'type'        => 'textarea',
-                        'rows'        => '5',
-                        'cols'        => '40',
-                        'description' => __('Use `|` as delimiter to separate'),
-                        'required'    => true,
-                    ],
-                ]);
+                $this->add(
+                    [
+                        'name'       => 'device_token',
+                        'options'    => [
+                            'label' => __('Device token'),
+                        ],
+                        'attributes' => [
+                            'type'        => 'textarea',
+                            'rows'        => '5',
+                            'cols'        => '40',
+                            'description' => __('Use `|` as delimiter to separate'),
+                            'required'    => true,
+                        ],
+                    ]
+                );
                 break;
 
             case 'user':
                 // user
-                $this->add([
-                    'name'       => 'user',
-                    'options'    => [
-                        'label' => __('User ids'),
-                    ],
-                    'attributes' => [
-                        'type'        => 'textarea',
-                        'rows'        => '5',
-                        'cols'        => '40',
-                        'description' => __('Use `|` as delimiter to separate'),
-                        'required'    => true,
-                    ],
-                ]);
+                $this->add(
+                    [
+                        'name'       => 'user',
+                        'options'    => [
+                            'label' => __('User ids'),
+                        ],
+                        'attributes' => [
+                            'type'        => 'textarea',
+                            'rows'        => '5',
+                            'cols'        => '40',
+                            'description' => __('Use `|` as delimiter to separate'),
+                            'required'    => true,
+                        ],
+                    ]
+                );
                 break;
 
             case 'topic':
                 // topic
-                $this->add([
-                    'name'       => 'topic',
-                    'options'    => [
-                        'label' => __('Topic'),
-                    ],
-                    'attributes' => [
-                        'type'        => 'text',
-                        'description' => '',
-                        'required'    => true,
-                    ],
-                ]);
+                $this->add(
+                    [
+                        'name'       => 'topic',
+                        'options'    => [
+                            'label' => __('Topic'),
+                        ],
+                        'attributes' => [
+                            'type'        => 'text',
+                            'description' => '',
+                            'required'    => true,
+                        ],
+                    ]
+                );
                 break;
 
             case 'all':
                 break;
         }
         // message
-        $this->add([
-            'name'       => 'message',
-            'options'    => [
-                'label' => __('Message'),
-            ],
-            'attributes' => [
-                'type'        => 'textarea',
-                'rows'        => '5',
-                'cols'        => '40',
-                'description' => '',
-                'required'    => true,
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'message',
+                'options'    => [
+                    'label' => __('Message'),
+                ],
+                'attributes' => [
+                    'type'        => 'textarea',
+                    'rows'        => '5',
+                    'cols'        => '40',
+                    'description' => '',
+                    'required'    => true,
+                ],
+            ]
+        );
         // Save
-        $this->add([
-            'name'       => 'submit',
-            'type'       => 'submit',
-            'attributes' => [
-                'value' => __('Send'),
-                'class' => 'btn btn-primary',
-            ],
-        ]);
+        $this->add(
+            [
+                'name'       => 'submit',
+                'type'       => 'submit',
+                'attributes' => [
+                    'value' => __('Send'),
+                    'class' => 'btn btn-primary',
+                ],
+            ]
+        );
     }
 }

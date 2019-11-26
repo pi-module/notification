@@ -43,11 +43,11 @@ class Cron extends AbstractApi
 
                 // Update result
                 //if (isset($result['send']) && $result['send'] == 1) {
-                    Pi::model('sms', $this->getModule())->update(
-                        //['send' => $result['send'], 'delivery' => $result['delivery']],
-                        ['send' => 1, 'delivery' => 1],
-                        ['id' => $row->id]
-                    );
+                Pi::model('sms', $this->getModule())->update(
+                //['send' => $result['send'], 'delivery' => $result['delivery']],
+                    ['send' => 1, 'delivery' => 1],
+                    ['id' => $row->id]
+                );
                 //}
 
                 // Send

@@ -4,9 +4,14 @@ $this->backbone();
 ?>
 <div id="js-notification" class="clearfix">
     <div class="alert alert-danger">
-        <p><?php _e('Website still dont send any push notification to mobile apps, for setup push notification service and send push notification to users please check this tips'); ?></p>
+        <p><?php _e(
+                'Website still dont send any push notification to mobile apps, for setup push notification service and send push notification to users please check this tips'
+            ); ?></p>
         <ol>
-            <li><?php echo sprintf(__('Push notification work by Firebase Cloud Messaging, for more information please check %s'), '<a href="https://firebase.google.com/docs/cloud-messaging/">https://firebase.google.com/docs/cloud-messaging</a>'); ?></li>
+            <li><?php echo sprintf(
+                    __('Push notification work by Firebase Cloud Messaging, for more information please check %s'),
+                    '<a href="https://firebase.google.com/docs/cloud-messaging/">https://firebase.google.com/docs/cloud-messaging</a>'
+                ); ?></li>
             <li><?php _e('Make sure your website mobile apps support push notification service, if not please call your app developer'); ?></li>
             <li><?php _e('Setup Firebase Cloud Messaging service on google console'); ?></li>
             <li>
@@ -69,7 +74,9 @@ $this->backbone();
                     <div class="caption">
                         <h3><?php _e('Push to user id'); ?></h3>
                         <div class="clearfix">
-                            <p class="col-md-10"><?php _e('Pust list of user ides ( or single id ) here, system send notification to all available device tokens on FCM'); ?></p>
+                            <p class="col-md-10"><?php _e(
+                                    'Pust list of user ides ( or single id ) here, system send notification to all available device tokens on FCM'
+                                ); ?></p>
                             <p class="col-md-2">
                                 <button type="button" class="btn btn-primary send-push-user"
                                         data-push-user="<?php echo $this->escape($pushUrl['user']); ?>">
@@ -85,7 +92,9 @@ $this->backbone();
                     <div class="caption">
                         <h3><?php _e('Push by device token'); ?></h3>
                         <div class="clearfix">
-                            <p class="col-md-10"><?php _e('Pust list of device tokens ( or device token ) here, system send notification to all available device tokens on FCM'); ?></p>
+                            <p class="col-md-10"><?php _e(
+                                    'Pust list of device tokens ( or device token ) here, system send notification to all available device tokens on FCM'
+                                ); ?></p>
                             <p class="col-md-2">
                                 <button type="button" class="btn btn-primary send-push-token"
                                         data-push-token="<?php echo $this->escape($pushUrl['token']); ?>">

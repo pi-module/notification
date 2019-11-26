@@ -60,15 +60,19 @@ class SmsController extends ActionController
         $paginator = Paginator::factory(intval($count));
         $paginator->setItemCountPerPage($limit);
         $paginator->setCurrentPageNumber($page);
-        $paginator->setUrlOptions([
-            'router' => $this->getEvent()->getRouter(),
-            'route'  => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
-            'params' => array_filter([
-                'module'     => $this->getModule(),
-                'controller' => 'sms',
-                'action'     => 'index',
-            ]),
-        ]);
+        $paginator->setUrlOptions(
+            [
+                'router' => $this->getEvent()->getRouter(),
+                'route'  => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
+                'params' => array_filter(
+                    [
+                        'module'     => $this->getModule(),
+                        'controller' => 'sms',
+                        'action'     => 'index',
+                    ]
+                ),
+            ]
+        );
         // Set view
         $this->view()->setTemplate('sms-index');
         $this->view()->assign('list', $list);
