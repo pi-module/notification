@@ -22,6 +22,7 @@ class PushFilter extends InputFilter
     {
         switch ($option['type']) {
             case 'token':
+
                 // device_token
                 $this->add(
                     [
@@ -37,6 +38,7 @@ class PushFilter extends InputFilter
                 break;
 
             case 'user':
+
                 // user
                 $this->add(
                     [
@@ -52,6 +54,7 @@ class PushFilter extends InputFilter
                 break;
 
             case 'topic':
+
                 // topic
                 $this->add(
                     [
@@ -67,14 +70,40 @@ class PushFilter extends InputFilter
                 break;
 
             case 'all':
-
                 break;
         }
-        // message
+
+        // title
         $this->add(
             [
-                'name'     => 'message',
+                'name'     => 'title',
                 'required' => true,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
+                ],
+            ]
+        );
+
+        // body
+        $this->add(
+            [
+                'name'     => 'body',
+                'required' => true,
+                'filters'  => [
+                    [
+                        'name' => 'StringTrim',
+                    ],
+                ],
+            ]
+        );
+
+        // image
+        $this->add(
+            [
+                'name'     => 'image',
+                'required' => false,
                 'filters'  => [
                     [
                         'name' => 'StringTrim',

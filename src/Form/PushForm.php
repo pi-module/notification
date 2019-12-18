@@ -36,6 +36,7 @@ class PushForm extends BaseForm
     {
         switch ($this->option['type']) {
             case 'token':
+
                 // device_token
                 $this->add(
                     [
@@ -55,6 +56,7 @@ class PushForm extends BaseForm
                 break;
 
             case 'user':
+
                 // user
                 $this->add(
                     [
@@ -74,6 +76,7 @@ class PushForm extends BaseForm
                 break;
 
             case 'topic':
+
                 // topic
                 $this->add(
                     [
@@ -93,12 +96,28 @@ class PushForm extends BaseForm
             case 'all':
                 break;
         }
-        // message
+
+        // title
         $this->add(
             [
-                'name'       => 'message',
+                'name'       => 'title',
                 'options'    => [
-                    'label' => __('Message'),
+                    'label' => __('Title'),
+                ],
+                'attributes' => [
+                    'type'        => 'text',
+                    'description' => '',
+                    'required'    => true,
+                ],
+            ]
+        );
+
+        // body
+        $this->add(
+            [
+                'name'       => 'body',
+                'options'    => [
+                    'label' => __('Body'),
                 ],
                 'attributes' => [
                     'type'        => 'textarea',
@@ -109,6 +128,22 @@ class PushForm extends BaseForm
                 ],
             ]
         );
+
+        // image
+        $this->add(
+            [
+                'name'       => 'image',
+                'options'    => [
+                    'label' => __('Image'),
+                ],
+                'attributes' => [
+                    'type'        => 'url',
+                    'description' => __('Set image URL'),
+                    'required'    => false,
+                ],
+            ]
+        );
+
         // Save
         $this->add(
             [

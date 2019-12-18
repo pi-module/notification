@@ -85,80 +85,15 @@ class PushController extends ActionController
             if ($form->isValid()) {
                 $values = $form->getData();
 
-                // Set data
-                $notification = [
-                    'message'          => $values['message'],
-                    'registration_ids' => [],
-                ];
-
-                // Set device id or topic
-                switch ($type) {
-                    case 'token':
-                        $notification['registration_ids'] = explode('|', $values['device_token']);
-                        break;
-
-                    case 'user':
-                        // Set info
-                        $columns  = ['uid', 'device_token'];
-                        $where    = ['device_token IS NOT NULL ?', 'uid' => explode('|', $values['user'])];
-                        $limit    = 1000;
-                        $order    = ['uid DESC'];
-
-                        // Select
-                        $select = Pi::model('profile', 'user')->select()->columns($columns)->where($where)->order($order)->limit($limit);
-                        $rowset = Pi::model('profile', 'user')->selectWith($select);
-
-                        // Set data
-                        foreach ($rowset as $row) {
-                            $notification['registration_ids'][] = $row->device_token;
-                            $notification['user'][$row->uid]    = [
-                                'uid'   => $row->uid,
-                                'token' => $row->device_token,
-                            ];
-                        }
-                        break;
-
-                    case 'topic':
-                        $notification['token'] = $values['topic'];
-                        break;
-
-                    case 'all':
-                        // Set info
-                        $columns = ['uid', 'device_token'];
-                        $where   = ['device_token IS NOT NULL ?'];
-                        $limit   = 1000;
-                        $order   = ['uid DESC'];
-
-                        // Select
-                        $select = Pi::model('profile', 'user')->select()->columns($columns)->where($where)->order($order)->limit($limit);
-                        $rowset = Pi::model('profile', 'user')->selectWith($select);
-
-                        // Set data
-                        foreach ($rowset as $row) {
-                            $notification['registration_ids'][] = $row->device_token;
-                            $notification['user'][$row->uid]    = [
-                                'uid'   => $row->uid,
-                                'token' => $row->device_token,
-                            ];
-                        }
-                        break;
-                }
+                // Set type
+                $values['type'] = $type;
 
                 // Send push notification
-                $result = Pi::service('notification')->fcm($notification);
-
-                // Save log
-                Pi::api('push', 'notification')->log(
-                    [
-                        'values'       => $values,
-                        'notification' => $notification,
-                        'result'       => $result,
-                    ]
-                );
+                $result = Pi::api('push', 'notification')->send($values);
 
                 // Set return
                 $return['status'] = $result['status'];
-                $return['data']   = '';
+                $return['result'] = $result;
             } else {
                 $return['status'] = 0;
                 $return['data']   = '';
