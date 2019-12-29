@@ -17,12 +17,12 @@ return [
             'name'  => 'admin',
         ],
         [
-            'title' => _a('Sms'),
-            'name'  => 'sms',
-        ],
-        [
             'title' => _a('Cron'),
             'name'  => 'cron',
+        ],
+        [
+            'title' => _a('Sms'),
+            'name'  => 'sms',
         ],
     ],
     'item'     => [
@@ -32,6 +32,15 @@ return [
             'title'    => _a('Admin mobile number'),
             'edit'     => 'text',
             'filter'   => 'string',
+        ],
+        // Cron
+        'module_cron'       => [
+            'category'    => 'cron',
+            'title'       => _a('Active this module cron system'),
+            'description' => '',
+            'edit'        => 'checkbox',
+            'filter'      => 'number_int',
+            'value'       => 1,
         ],
         // Sms
         'sms_send_time'     => [
@@ -90,15 +99,6 @@ return [
             'title'    => _a('Iran sms panel soap url'),
             'edit'     => 'text',
             'filter'   => 'string',
-        ],
-        // Cron
-        'module_cron'       => [
-            'category'    => 'cron',
-            'title'       => _a('Active this module cron system'),
-            'description' => '',
-            'edit'        => 'checkbox',
-            'filter'      => 'number_int',
-            'value'       => 1,
         ],
     ],
 ];

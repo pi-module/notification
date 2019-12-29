@@ -61,7 +61,6 @@ class Cron extends AbstractApi
                         break;
                 }
 
-
                 // Set log
                 Pi::service('audit')->log('cron', $result['send']);
             }

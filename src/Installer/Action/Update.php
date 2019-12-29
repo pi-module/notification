@@ -44,40 +44,6 @@ class Update extends BasicUpdate
         $smsTable   = $smsModel->getTable();
         $smsAdapter = $smsModel->getAdapter();
 
-        // Update to version 0.1.2
-        if (version_compare($moduleVersion, '0.1.2', '<')) {
-            // Add table : push
-            $sql = <<<'EOD'
-CREATE TABLE `{push}` (
-  `id`           INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `time_create`  INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  # FCM
-  `to`           VARCHAR(255)     NOT NULL DEFAULT '',
-  `title`        VARCHAR(255)     NOT NULL DEFAULT '',
-  `body`         TEXT,
-  `sound`        VARCHAR(255)     NOT NULL DEFAULT '',
-  `time_to_live` VARCHAR(255)     NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `time_create` (`time_create`)
-);
-EOD;
-            SqlSchema::setType($this->module);
-            $sqlHandler = new SqlSchema;
-            try {
-                $sqlHandler->queryContent($sql);
-            } catch (\Exception $exception) {
-                $this->setResult(
-                    'db', [
-                    'status'  => false,
-                    'message' => 'SQL schema query for author table failed: '
-                        . $exception->getMessage(),
-                ]
-                );
-
-                return false;
-            }
-        }
-
         // Update to version 0.2.1
         if (version_compare($moduleVersion, '0.2.1', '<')) {
             // Alter table : ADD send
