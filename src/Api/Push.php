@@ -42,13 +42,14 @@ class Push extends AbstractApi
         // Set device id or topic
         switch ($params['type']) {
             case 'token':
-                $notification['registration_ids'] = explode('|', $params['device_token']);
+                $notification['registration_ids'] = is_array($params['device_token']) ? $params['device_token'] : explode('|', $params['device_token']);
                 break;
 
             case 'user':
                 // Set info
+                $uid = is_array($params['user']) ? $params['user'] : explode('|', $params['user']);
                 $columns = ['uid', 'device_token'];
-                $where   = ['device_token IS NOT NULL ?', 'uid' => explode('|', $params['user'])];
+                $where   = ['device_token IS NOT NULL ?', 'uid' => $uid];
                 $limit   = 1000;
                 $order   = ['uid DESC'];
 
