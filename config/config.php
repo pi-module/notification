@@ -17,6 +17,10 @@ return [
             'name'  => 'admin',
         ],
         [
+            'title' => _a('Push'),
+            'name'  => 'push',
+        ],
+        [
             'title' => _a('Cron'),
             'name'  => 'cron',
         ],
@@ -26,14 +30,26 @@ return [
         ],
     ],
     'item'     => [
-        // Admin
+        
+        // admin
         'admin_number'      => [
             'category' => 'admin',
             'title'    => _a('Admin mobile number'),
             'edit'     => 'text',
             'filter'   => 'string',
         ],
-        // Cron
+        
+        // push
+        'save_notification'       => [
+            'category'    => 'push',
+            'title'       => _a('Save each user notification on database'),
+            'description' => '',
+            'edit'        => 'checkbox',
+            'filter'      => 'number_int',
+            'value'       => 0,
+        ],
+        
+        // cron
         'module_cron'       => [
             'category'    => 'cron',
             'title'       => _a('Active this module cron system'),
@@ -42,7 +58,8 @@ return [
             'filter'      => 'number_int',
             'value'       => 1,
         ],
-        // Sms
+        
+        // sms
         'sms_send_time'     => [
             'title'       => _a('Set send time'),
             'description' => _a('If select send sms by cron, need install tools module and set cron job time'),

@@ -27,6 +27,12 @@ class Push extends AbstractApi
 {
     public function send($params)
     {
+        // Get config
+        $config = Pi::service('registry')->config->read($this->getModule());
+
+        // Set user id list
+        $userIdes = [];
+
         // Set data
         $notification = [
             'title'            => $params['title'],
@@ -47,7 +53,7 @@ class Push extends AbstractApi
 
             case 'user':
                 // Set info
-                $uid = is_array($params['user']) ? $params['user'] : explode('|', $params['user']);
+                $uid     = is_array($params['user']) ? $params['user'] : explode('|', $params['user']);
                 $columns = ['uid', 'device_token'];
                 $where   = ['device_token IS NOT NULL ?', 'uid' => $uid];
                 $limit   = 1000;
@@ -59,6 +65,7 @@ class Push extends AbstractApi
 
                 // Set data
                 foreach ($rowset as $row) {
+                    $userIdes[$row->uid]                = $row->uid;
                     $notification['registration_ids'][] = $row->device_token;
                     $notification['user'][$row->uid]    = [
                         'uid'   => $row->uid,
@@ -84,6 +91,7 @@ class Push extends AbstractApi
 
                 // Set data
                 foreach ($rowset as $row) {
+                    $userIdes[$row->uid]                = $row->uid;
                     $notification['registration_ids'][] = $row->device_token;
                     $notification['user'][$row->uid]    = [
                         'uid'   => $row->uid,
@@ -104,6 +112,19 @@ class Push extends AbstractApi
                 'result'       => $result,
             ]
         );
+
+        // Save notification on db
+        if (Pi::service('module')->isActive('message') && $config['save_notification'] && !empty($userIdes)) {
+            foreach ($userIdes as $userId) {
+                Pi::api('api', 'message')->notify(
+                    $userId,
+                    $params['body'],
+                    $params['title'],
+                    isset($params['tag']) ? $params['tag'] : 'general',
+                    isset($params['image']) ? $params['image'] : ''
+                );
+            }
+        }
 
         return $result;
     }
