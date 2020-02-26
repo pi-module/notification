@@ -107,9 +107,10 @@ class Push extends AbstractApi
         // Save log
         Pi::api('push', 'notification')->log(
             [
-                'params'       => $params,
+                'type'         => $params['type'],
                 'notification' => $notification,
-                'result'       => $result,
+                'request'      => $result['request'],
+                'response'     => $result['response'],
             ]
         );
 
@@ -126,14 +127,20 @@ class Push extends AbstractApi
             }
         }
 
-        return $result;
+        return [
+            'status'  => $result['status'],
+            'message' => $result['message'],
+        ];
     }
 
     public function log($notification)
     {
         Pi::service('audit')->log(
             'notification',
-            json_encode($notification)
+            json_encode(
+                $notification,
+                JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK
+            )
         );
     }
 }
