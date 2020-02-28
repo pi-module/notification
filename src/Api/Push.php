@@ -121,8 +121,11 @@ class Push extends AbstractApi
                     $userId,
                     $params['body'],
                     $params['title'],
-                    isset($params['tag']) ? $params['tag'] : 'general',
-                    isset($params['image']) ? $params['image'] : ''
+                    isset($params['tag']) ? $params['tag'] : '',
+                    isset($params['image']) ? $params['image'] : '',
+                    isset($params['entity_module']) ? $params['entity_module'] : '',
+                    isset($params['entity_type']) ? $params['entity_type'] : '',
+                    isset($params['entity_id']) ? $params['entity_id'] : 0
                 );
             }
         }
