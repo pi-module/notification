@@ -48,6 +48,13 @@ return [
             'filter'      => 'number_int',
             'value'       => 0,
         ],
+        'fcm_default_topic' => [
+            'category'    => 'push',
+            'title'       => _a('Default fcm topic name'),
+            'description' => _a('Put default topic name if you want sent faster, format like /topics/MY_TOPIC'),
+            'edit'        => 'text',
+            'filter'      => 'string',
+        ],
         
         // cron
         'module_cron'       => [

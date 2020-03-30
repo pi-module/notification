@@ -68,12 +68,18 @@ class PushController extends ActionController
     public function sendAction()
     {
         $return = [];
+
         // Get page
+        $module = $this->params('module');
         $type = $this->params('type');
+
+        // Get config
+        $config = Pi::service('registry')->config->read($module);
 
         // Set option
         $option = [
-            'type' => $type,
+            'type'              => $type,
+            'fcm_default_topic' => $config['fcm_default_topic']
         ];
 
         // Set form

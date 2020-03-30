@@ -88,6 +88,7 @@ class PushForm extends BaseForm
                             'type'        => 'text',
                             'description' => '',
                             'required'    => true,
+                            'value'       => $this->option['fcm_default_topic']
                         ],
                     ]
                 );
