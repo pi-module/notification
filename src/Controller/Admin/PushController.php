@@ -16,7 +16,7 @@ namespace Module\Notification\Controller\Admin;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
-use Zend\Db\Sql\Predicate\Expression;
+use Laminas\Db\Sql\Predicate\Expression;
 use Module\Notification\Form\PushForm;
 use Module\Notification\Form\PushFilter;
 

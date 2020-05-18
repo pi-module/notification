@@ -15,8 +15,8 @@ namespace Module\Notification\Api;
 
 use Pi;
 use Pi\Application\Api\AbstractApi;
-use Zend\Soap\Client as ZendSoapClient;
-use Zend\Json\Json;
+use Laminas\Soap\Client as LaminasSoapClient;
+use Laminas\Json\Json;
 
 /*
  * Pi::api('sms', 'notification')->sendToUser($content, $number, $operator);
@@ -112,7 +112,7 @@ class Sms extends AbstractApi
 
                 // Send
                 try {
-                    $client = new ZendSoapClient($config['sms_iran_soap_url']);
+                    $client = new LaminasSoapClient($config['sms_iran_soap_url']);
                     $client->SendSMS_Single($parameters);
 
                     $result = [
@@ -145,7 +145,7 @@ class Sms extends AbstractApi
 
                 // Send
                 try {
-                    $client = new ZendSoapClient($config['sms_iran_soap_url']);
+                    $client = new LaminasSoapClient($config['sms_iran_soap_url']);
                     $client->SendSms($parameters)->SendSmsResult;
 
                     $result = [
