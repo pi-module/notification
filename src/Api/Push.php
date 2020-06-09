@@ -15,8 +15,8 @@ namespace Module\Notification\Api;
 
 use Pi;
 use Pi\Application\Api\AbstractApi;
-use Zend\Soap\Client as ZendSoapClient;
-use Zend\Json\Json;
+use Laminas\Soap\Client as LaminasSoapClient;
+use Laminas\Json\Json;
 
 /*
  * Pi::api('push', 'notification')->send($params);

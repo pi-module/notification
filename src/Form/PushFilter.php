@@ -14,7 +14,7 @@
 namespace Module\Notification\Form;
 
 use Pi;
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 
 class PushFilter extends InputFilter
 {
