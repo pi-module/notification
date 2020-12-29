@@ -67,7 +67,6 @@ class Cron extends AbstractApi
 
             // Set log
             Pi::service('audit')->log('cron', 'notification - End cron on server');
-
         } else {
             // Set log
             Pi::service('audit')->log('cron', 'notification - cron system not active for this module');

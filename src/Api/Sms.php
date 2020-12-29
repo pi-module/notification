@@ -120,7 +120,6 @@ class Sms extends AbstractApi
                         'send'     => 1,
                         'message'  => __('Sms send successfully !'),
                     ];
-
                 } catch (SoapFault $fault) {
                     $result['message'] = __('Error to send SMS');
                 }

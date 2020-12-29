@@ -20,6 +20,5 @@ class DashboardController extends ActionController
 {
     public function indexAction()
     {
-
     }
 }

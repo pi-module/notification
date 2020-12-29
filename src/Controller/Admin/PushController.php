@@ -28,7 +28,8 @@ class PushController extends ActionController
         $pushUrl = [
             'all'   => pi::url(
                 $this->url(
-                    '', [
+                    '',
+                    [
                         'action' => 'send',
                         'type'   => 'all',
                     ]
@@ -36,7 +37,8 @@ class PushController extends ActionController
             ),
             'token' => pi::url(
                 $this->url(
-                    '', [
+                    '',
+                    [
                         'action' => 'send',
                         'type'   => 'token',
                     ]
@@ -44,7 +46,8 @@ class PushController extends ActionController
             ),
             'user'  => pi::url(
                 $this->url(
-                    '', [
+                    '',
+                    [
                         'action' => 'send',
                         'type'   => 'user',
                     ]
@@ -52,7 +55,8 @@ class PushController extends ActionController
             ),
             'topic' => pi::url(
                 $this->url(
-                    '', [
+                    '',
+                    [
                         'action' => 'send',
                         'type'   => 'topic',
                     ]
