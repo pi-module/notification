@@ -112,17 +112,19 @@ return [
             'edit'     => 'text',
             'filter'   => 'string',
         ],
-        'sms_iran_number'   => [
+        'nexmo_key'   => [
             'category' => 'sms',
-            'title'    => _a('Iran sms panel number'),
+            'title'    => _a('Nexmo key'),
             'edit'     => 'text',
             'filter'   => 'string',
         ],
-        'sms_iran_soap_url' => [
+        'nexmo_secret' => [
             'category' => 'sms',
-            'title'    => _a('Iran sms panel soap url'),
+            'title'    => _a('Nexmo secret'),
             'edit'     => 'text',
             'filter'   => 'string',
         ],
+
+
     ],
 ];

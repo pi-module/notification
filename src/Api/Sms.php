@@ -166,4 +166,40 @@ class Sms extends AbstractApi
     {
         return false;
     }
+
+    // More information at : https://developer.nexmo.com/messaging/sms/overview
+    public function nexmo($content, $number, $operator = '')
+    {
+        // Get config
+        $config = Pi::service('registry')->config->read($this->getModule());
+
+        // Set client
+        $basic  = new \Vonage\Client\Credentials\Basic($config['nexmo_key'], $config['nexmo_secret']);
+        $client = new \Vonage\Client($basic);
+
+        // Send SMS
+        $response = $client->sms()->send(
+            new \Vonage\SMS\Message\SMS($number, Pi::config('sitename'), $content)
+        );
+
+        // Get message
+        $message = $response->current();
+
+        if ($message->getStatus() == 0) {
+            $result = [
+                'delivery' => 1,
+                'send'     => 1,
+                'message'  => __('The message was sent successfully'),
+            ];
+        } else {
+            $result = [
+                'delivery' => 0,
+                'send'     => 0,
+                'message'  => sprintf(__('The message failed with status: '), $message->getStatus()),
+            ];
+        }
+
+        // result
+        return $result;
+    }
 }
