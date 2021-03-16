@@ -15,7 +15,7 @@ return [
     'meta'     => [
         'title'       => _a('Notification'),
         'description' => _a('General Notification system'),
-        'version'     => '0.3.4',
+        'version'     => '0.3.5',
         'license'     => 'New BSD',
         'logo'        => 'image/logo.png',
         'readme'      => 'docs/readme.txt',

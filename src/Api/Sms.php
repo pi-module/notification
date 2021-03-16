@@ -70,6 +70,10 @@ class Sms extends AbstractApi
                 case 'france':
                     $result = $this->sendSmsFrance($content, $number, $operator);
                     break;
+
+                case 'nexmo':
+                    $result = $this->sendSmsNexmo($content, $number, $operator);
+                    break;
             }
         }
 
@@ -168,7 +172,7 @@ class Sms extends AbstractApi
     }
 
     // More information at : https://developer.nexmo.com/messaging/sms/overview
-    public function nexmo($content, $number, $operator = '')
+    public function sendSmsNexmo($content, $number, $operator = '')
     {
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());

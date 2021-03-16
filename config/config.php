@@ -93,6 +93,7 @@ return [
                         'null'   => _a('Not set'),
                         'iran'   => _a('Iran'),
                         'france' => _a('France'),
+                        'nexmo'  => _a('Nexmo'),
                     ],
                 ],
             ],
