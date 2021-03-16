@@ -183,7 +183,7 @@ class Sms extends AbstractApi
 
         // Send SMS
         $response = $client->sms()->send(
-            new \Vonage\SMS\Message\SMS($number, $config['nexmo_number'], $content)
+            new \Vonage\SMS\Message\SMS(ltrim($number, '0'), $config['nexmo_number'], $content)
         );
 
         // Get message
