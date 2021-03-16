@@ -112,6 +112,12 @@ return [
             'edit'     => 'text',
             'filter'   => 'string',
         ],
+        'nexmo_number'   => [
+            'category' => 'sms',
+            'title'    => _a('Nexmo number'),
+            'edit'     => 'text',
+            'filter'   => 'string',
+        ],
         'nexmo_key'   => [
             'category' => 'sms',
             'title'    => _a('Nexmo key'),
@@ -124,7 +130,5 @@ return [
             'edit'     => 'text',
             'filter'   => 'string',
         ],
-
-
     ],
 ];
