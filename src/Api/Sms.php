@@ -181,29 +181,36 @@ class Sms extends AbstractApi
         $basic  = new \Vonage\Client\Credentials\Basic($config['nexmo_key'], $config['nexmo_secret']);
         $client = new \Vonage\Client($basic);
 
-        // Send SMS
-        $response = $client->sms()->send(
-            new \Vonage\SMS\Message\SMS(ltrim($number, '0'), $config['nexmo_number'], $content)
-        );
+        try {
+            // Send SMS
+            $response = $client->sms()->send(
+                new \Vonage\SMS\Message\SMS($number, $config['nexmo_number'], $content)
+            );
 
-        // Get message
-        $message = $response->current();
+            // Get message
+            $message = $response->current();
 
-        if ($message->getStatus() == 0) {
-            $result = [
-                'delivery' => 1,
-                'send'     => 1,
-                'message'  => __('The message was sent successfully'),
-            ];
-        } else {
+            if ($message->getStatus() == 0) {
+                $result = [
+                    'delivery' => 1,
+                    'send'     => 1,
+                    'message'  => __('The message was sent successfully'),
+                ];
+            } else {
+                $result = [
+                    'delivery' => 0,
+                    'send'     => 0,
+                    'message'  => sprintf(__('The message failed with status: '), $message->getStatus()),
+                ];
+            }
+        } catch (\Exception $e) {
             $result = [
                 'delivery' => 0,
                 'send'     => 0,
-                'message'  => sprintf(__('The message failed with status: '), $message->getStatus()),
+                'message'  => "The message failed with status code " . $e->getCode() . ": " . $e->getMessage() . "\n",
             ];
         }
 
-        // result
         return $result;
     }
 }
