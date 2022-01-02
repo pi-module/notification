@@ -113,6 +113,18 @@ return [
             'edit'     => 'text',
             'filter'   => 'string',
         ],
+        'sms_iran_number' => [
+            'category' => 'sms',
+            'title'    => _a('Iran sms number'),
+            'edit'     => 'text',
+            'filter'   => 'string',
+        ],
+        'sms_iran_soap_url' => [
+            'category' => 'sms',
+            'title'    => _a('Iran sms soap url'),
+            'edit'     => 'text',
+            'filter'   => 'string',
+        ],
         'nexmo_number'   => [
             'category' => 'sms',
             'title'    => _a('Nexmo number'),

@@ -21,6 +21,7 @@ use Laminas\Json\Json;
 /*
  * Pi::api('sms', 'notification')->sendToUser($content, $number, $operator);
  * Pi::api('sms', 'notification')->sendToAdmin($content, $number, $operator);
+ *
  */
 
 class Sms extends AbstractApi
@@ -102,31 +103,7 @@ class Sms extends AbstractApi
 
         switch ($operator) {
             case 'fanava':
-                $parameters                       = [];
-                $parameters['strServiceID']       = "RahyabSMS";
-                $parameters['strServiceToken']    = "R@hy@bSoap_V1";
-                $parameters['strMessageText']     = $content;
-                $parameters['strRecipientNumber'] = ltrim($number, 0);
-                $parameters['strSenderNumber']    = $config['sms_iran_number'];
-                $parameters['strNumberUsername']  = $config['sms_iran_username'];
-                $parameters['strNumberPassword']  = $config['sms_iran_password'];
-                $parameters['strNumberCompany']   = "FANAVASYSTEM";
-                $parameters['strIP']              = '';
-                $parameters['strResultMessage']   = '';
 
-                // Send
-                try {
-                    $client = new LaminasSoapClient($config['sms_iran_soap_url']);
-                    $client->SendSMS_Single($parameters);
-
-                    $result = [
-                        'delivery' => 1,
-                        'send'     => 1,
-                        'message'  => __('Sms send successfully !'),
-                    ];
-                } catch (SoapFault $fault) {
-                    $result['message'] = __('Error to send SMS');
-                }
                 break;
 
             default:
@@ -144,7 +121,7 @@ class Sms extends AbstractApi
                 $parameters['isflash']  = false;
                 $parameters['udh']      = "";
                 $parameters['recId']    = [0];
-                $parameters['status']   = 0x0;
+                $parameters['status']   = [0];
 
                 // Send
                 try {
@@ -174,6 +151,13 @@ class Sms extends AbstractApi
     // More information at : https://developer.nexmo.com/messaging/sms/overview
     public function sendSmsNexmo($content, $number, $operator = '')
     {
+        // Check number
+        if (substr($number, 0, 1) == 0) {
+            $number = preg_replace('/\D+/', '', $number);
+            $number = ltrim($number, '0');
+            $number = sprintf('+%s', $number);
+        }
+
         // Get config
         $config = Pi::service('registry')->config->read($this->getModule());
 
